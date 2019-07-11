@@ -1,0 +1,58 @@
+<html>
+<head><title>Read Json</title></head>
+    <link rel="stylesheet" href="index.css">
+    <script src="lib/jquery-3.4.1.js"></script>
+    <script src="lib/bootstrap-4.0.0-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap-grid.css">
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="lib/dagre-d3.js"></script>
+<body>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <label>Choose a language file: </label>
+                <input type='file' id='loadparsefile' value='load'>
+                <label>Choose a language: </label>
+                <select id=langlist><option>ta</option><option>de</option><option>en</option></select>
+                <input type='button' id='savetojson' value='save' onclick='save'>
+                <label id="displaytojson">Result will be displayed !!!</label>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <input type='file' id='load' value='load'>
+                <input type='button' id='save' value='save' onclick='save'>
+            </div>
+        </div>
+        <div id="languages" class="row">
+            <div class='col-sm-1'>
+                <button type='button' onclick='changeLanguage("tamil")'>Tamil</button>
+            </div>
+            <div class='col-sm-1'>
+                <button type='button' onclick='changeLanguage("german")'>German</button>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-3'>
+                <div id='items' class='list-group'></div>
+            </div>
+            <div class='col-sm-9'>
+                <!--<ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">German</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Tamil</a>
+                  </li>
+                </ul>-->
+                <div id='graph'></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../parse-tree-gui-tool/util.js"></script>
+<script type="text/javascript" src="../parse-tree-gui-tool/tree.js"></script>
+<script type="text/javascript" src="../parse-tree-gui-tool/tree-group.js"></script>
+<script type="text/javascript" src="../parse-tree-gui-tool/tree-gui.js"></script>
+<script type='text/javascript' src='index.js'></script>
+</html>

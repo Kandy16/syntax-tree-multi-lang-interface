@@ -1,0 +1,136 @@
+{
+	"sentences":{
+		"1":{
+			"tamil":{
+				"sentence":"நான் தூங்குகிறேன் மற்றும் நீ தூங்குகிறாய்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PersPron [ref=1] (lex நான் [stem=I,case=1,person=1,number=sg]))) (head V [ref=3] (lex தூங்குகிறேன் [stem=sleep,tense=present,person=1,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PersPron [ref=2] (lex நீ 10~[stem=you,case=1,person=2,number=sg]))) (head V [ref=3] (lex தூங்குகிறாய் [stem=sleep,tense=present,person=2,number=sg,mode=active]))))"
+			}
+        },
+        "2":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "3":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "4":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "5":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "6":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "7":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "8":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "9":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "10":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "11":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "12":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "13":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "14":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "15":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "16":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "17":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "18":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "19":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "20":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "21":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        },
+        "22":{
+			"tamil":{
+				"sentence":"செந்தில் தூங்குகிறான் மற்றும் ராஜேஷ் தூங்குகிறான்",
+				"tree":"(expr S (conj S [ref=4] (subj NP [ref=1] (head PropN [ref=1] (lex செந்தில் [stem=Hans,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))) (coord C (lex மற்றும் [stem=and])) (conj S [ref=5] (subj NP [ref=2] (head PropN [ref=2] (lex ராஜேஷ் 10~ stem=Peter,case=1,person=3,number=sg,gender=masc]))) (head V [ref=3] (lex தூங்குகிறான் [stem=sleep,tense=present,person=3,number=sg,mode=active]))))"			
+			}
+        }
+    }
+}
