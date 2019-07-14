@@ -9,42 +9,47 @@
 <body>
     <div class='container-fluid'>
         <div class='row'>
-            <div class='col-sm-12'>
+            <div id = 'tojson' class='col-xs-12'>
                 <label>Choose a language file: </label>
-                <input type='file' id='loadparsefile' value='load'>
-                <label>Choose a language: </label>
-                <select id=langlist><option>ta</option><option>de</option><option>en</option></select>
-                <input type='button' id='savetojson' value='save' onclick='save'>
-                <label id="displaytojson">Result will be displayed !!!</label>
+                <input type='file' class='loadfile' value='load input'>
+                <label>Choose the language of file: </label>
+                <select class='loadlang'></select>
+                <label>Choose the languages for translation: </label>
+                <select class='translatelang' multiple=true></select>
+                <input type='file' class='translatefile' value='load translate'>
+                <input type='button' class='save' value='convert to JSON'>
+                <label class="display">Action status will be displayed !!!</label>
             </div>
         </div>
+        <div id='view-selectjson' class='row'>
+            <div class='col-xs-4'>
+                <input type='file' class='loadjson' value='load json'>
+                <input type='button' class='savejson' value='save' onclick='save'>
+            </div>
+            <div class='col-xs-4'>
+                <label>Meaning: </label>
+                <textarea></textarea>
+                <input type="button" class='main-meaning' value='update'>
+            </div>
+            <div class='col-xs-4'>
+                <label>Comment: </label>
+                <textarea></textarea>
+                <input type="button" class='main-comment' value='update'>
+            </div>
+            <input type="button" class='add' value='Add'>
+            <input type="button" class='delete' value='Delete'>
+        </div>
+
         <div class='row'>
-            <div class='col-sm-12'>
-                <input type='file' id='load' value='load'>
-                <input type='button' id='save' value='save' onclick='save'>
+            <div id='list-selectjson' class='col-xs-3'>
+                <div class='list-group'></div>
             </div>
-        </div>
-        <div id="languages" class="row">
-            <div class='col-sm-1'>
-                <button type='button' onclick='changeLanguage("tamil")'>Tamil</button>
-            </div>
-            <div class='col-sm-1'>
-                <button type='button' onclick='changeLanguage("german")'>German</button>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-sm-3'>
-                <div id='items' class='list-group'></div>
-            </div>
-            <div class='col-sm-9'>
-                <!--<ul class="nav nav-tabs">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">German</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">Tamil</a>
-                  </li>
-                </ul>-->
+            <div id='draw-selectjson' class='col-xs-9'>
+                <label>Comment: </label>
+                <textarea></textarea>
+                <input type="button" class='tree-comment' value='update'>
+                <input type="button" class='add' value='Add'>
+                <input type="button" class='delete' value='Delete'>
                 <div id='graph'></div>
             </div>
         </div>
@@ -54,5 +59,6 @@
 <script type="text/javascript" src="../parse-tree-gui-tool/tree.js"></script>
 <script type="text/javascript" src="../parse-tree-gui-tool/tree-group.js"></script>
 <script type="text/javascript" src="../parse-tree-gui-tool/tree-gui.js"></script>
+<script type="text/javascript" src="converters/parserfiletojson.js"></script>
 <script type='text/javascript' src='index.js'></script>
 </html>

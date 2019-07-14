@@ -1,0 +1,3673 @@
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// test sentences for coordination ////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// beginning of gapping tests
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 1 : Ich schlafe und du schläfst
+(expr S 
+  (conj S [ref=4]
+      (subj NP [ref=1]
+            (head PersPron [ref=1]
+                  (lex Ich [stem=I,case=1,person=1,number=sg])))
+      (head V [ref=3]
+            (lex schlafe [stem=sleep,tense=present,person=1,number=sg,mode=active])))
+(coord C 
+    (lex und [stem=and]))
+// Peter schläft
+(conj S [ref=5]
+      (subj NP [ref=2]
+            (head PersPron [ref=2]
+                  (lex du 10~[stem=you,case=1,person=2,number=sg])))
+      (head V [ref=3]
+             (lex schläfst [stem=sleep,tense=present,person=2,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 2 : Hans schläft und Peter schläft
+(expr S 
+  (conj S [ref=4]
+      (subj NP [ref=1]
+            (head PropN [ref=1]
+                  (lex Hans [stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V [ref=3]
+            (lex schläft [stem=sleep,tense=present,person=3,number=sg,mode=active])))
+(coord C 
+    (lex und [stem=and]))
+// Peter schläft
+(conj S [ref=5]
+      (subj NP [ref=2]
+            (head PropN [ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V [ref=3]
+             (lex schläft [stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+// sentence 3 : Hans will schlafen und Peter will schlafen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=19]
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=7]
+            (head V 5~[{6},ref=7]
+                 (lex schlafen 6~[stem=sleep,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter will schlafen
+(conj S 7~[subject={10},ref=20,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10},ref=1]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+     (head V 5~[{6},ref=9]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=7]
+            (head V 5~[{6},ref=7]
+                  (lex schlafen 12~[stem=sleep,tense=infinitive,mode=active])))))
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+// sentence 3a - example 12 in the paper
+// Minu naine soovib osta autot ja minu poeg soovib_g ostagg mootorratast
+// Meine Frau will ein Auto kaufen und mein Sohn will_g ein Motorrad kaufen_gg
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=19]
+      (subj NP 2~[{4},ref=2]
+          (mod PossPron 5~[{6},mod-type=deictic,ref=22]
+           (lex Meine 6~[stem=my,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Frau 10~[stem=wife,case=nominative,person=3,number=pl,gender=fem])))
+      (head V 5~[{6},ref=9]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=7]
+       (dobj NP 2~[{4},ref=6]
+          (det DETP 5~[{6},mod-type=time,ref=122]
+           (lex ein 6~[stem=a,case=accusative,person=3,number=sg,gender=mask]))
+              (head N 3~[{4},ref=6]
+                   (lex Auto 4~[stem=car,case=accusative,person=3,number=sg,gender=neuter])))
+            (head V 5~[{6},ref=7]
+                 (lex kaufen 6~[stem=buy,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=20,head={11}]
+      (subj NP 8~[{10},ref=31]
+          (mod PossPron 5~[{6},mod-type=deictic,ref=222]
+           (lex mein 6~[stem=my,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Sohn 10~[stem=son,case=nominative,person=3,number=pl,gender=masc])))
+     (head V 5~[{6},ref=9]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=71]
+       (dobj NP 2~[{4},ref=56]
+          (det DETP 5~[{6},mod-type=time,ref=242]
+           (lex ein 6~[stem=a,case=accusative,person=3,number=sg,gender=neuter]))
+              (head N 3~[{4},ref=46]
+                   (lex Motorrad 4~[stem=motorbike,case=accusative,person=3,number=sg,gender=neuter])))
+            (head V 5~[{6},ref=7]
+                  (lex kaufen 12~[stem=buy,tense=infinitive,mode=active])))))
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+// sentence 3b - example 13 in the paper
+// Juht sai surma ja reisijad _g tõsiselt vigastada ---Der Fahrer wurde getötet und die Passagiere _g ernsthaft verletzt
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=19]
+      (subj NP 2~[{4},ref=2]
+          (det DETP 5~[{6},ref=22]
+           (lex Der 6~[stem=the,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Fahrer 10~[stem=driver,case=nominative,person=3,number=pl,gender=fem])))
+      (head V 5~[{6},ref=9]
+            (lex wurde 6~[stem=aux-be,tense=perfect,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=71]
+     (head V 5~[{6},ref=77]
+                  (lex getötet 12~[stem=killed,tense=ptz,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=20,head={11}]
+      (subj NP 8~[{10},ref=31]
+          (det DETP 5~[{6},ref=222]
+           (lex die 6~[stem=the,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Passagiere 10~[stem=passenger,case=nominative,person=3,number=pl,gender=masc])))
+     (head V 5~[{6},ref=9]
+            (lex wurden 6~[stem=aux-be,tense=perfect,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=71]
+       (mod ADVP 5~[{6},mod-type=vmod,ref=18]
+             (head ADV 5~[{6},mod-type=vmod,ref=18]
+                  (lex ernsthaft 6~[stem=severly])))
+     (head V 5~[{6},ref=7]
+                  (lex verletzt 12~[stem=wounded,tense=ptz,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 4 : Hans kann schlafen und Hans kann träumen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,ref=11,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=4]
+            (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active]))
+     (cmp S
+     (head V 5~[{6},ref=5]
+                 (lex schlafen 6~[stem=sleep,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans kann trauemen
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,ref=11,case=1,person=3,number=sg,gender=masc])))
+     (head V 5~[{6},ref=4]
+            (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 
+            (head V 5~[{6},ref=18]
+                  (lex träumen 12~[stem=dream,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 5 : ich sehe Hans der schläft im Auto und sehe Hans der schläft im Bus 
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex sehe 26~[stem=see,tense=present,person=1,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex sehe 26~[stem=see,tense=present,person=1,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=16]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=21]
+                  (lex Bus 4~[stem=bus,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 6: Hans muss schlafen können und Peter muss schlafen können
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=19]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=1]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex muss 6~[stem=have-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=19]
+       (cmp S 5~[{6},ref=18]
+          (head V 5~[{6},ref=18]
+         	 (lex schlafen 6~[stem=sleep,tense=ing-form,mode=active])))
+           (head V 5~[{6},ref=8]
+                (lex können 6~[stem=be-able-to,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+      (conj S 1~[subject={2},head={5},ref=20]
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex muss 6~[stem=have-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=19]
+        (cmp S 5~[{6},ref=18]
+              (head V 5~[{6},ref=18]
+         	    (lex schlafen 6~[stem=sleep,tense=ing-form,mode=active])))
+         (head V 5~[{6},ref=8]
+                (lex können 6~[stem=be-able-to,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 7: Hans ißt Äpfel und Peter ißt Birnen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=13,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=6]
+            (head N 17~[{18},ref=6]
+                  (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 7a: Hans ißt Äpfel und Birnen ißt Peter
+(expr S
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=13,head={11}]
+      (dobj NP 16~[{17},ref=6]
+            (head N 17~[{18},ref=6]
+                  (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem])))
+      (head V 11~[{12},ref=11]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+ ))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// sentence 7a - example 9 in the article
+// Mari liest Artikel und ihre Söhne _g dicke Bücher -- Mari loeb artikleid ja tema pojad _g pakse raamatuid
+// Mari reads articles and her sons thick books
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Mari 4~[stem=Mari,case=nominative,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=11] 
+            (lex liest 6~[stem=read,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Artikel 15~[stem=article,case=accusative,person=3,number=pl,gender=masc]))))
+// ja
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=13,head={11}]
+      (subj NP 8~[{10},ref=2]
+          (mod PossPron 5~[{6},mod-type=deictic,ref=22]
+           (lex ihre 6~[stem=her,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Söhne 10~[stem=son,case=nominative,person=3,number=pl,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex lesen 12~[stem=read,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=6]
+               (mod ADJP 12~[{14},mod-type=attr,ref=6]
+                  (head ADJ 5~[{6},ref=13]
+                     (lex dicke 6~[stem=thick,case=nominative,person=3,number=sg,gender=masc])))    
+           (head N 17~[{18},ref=6]
+                  (lex Bücher 18~[stem=book,case=accusative,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// sentence 7b - example 21 in the article
+// Mari loeb _ b ja Jüri kirjutab raamatuid -- Mari liest _ b und Jüri schreibt Bücher
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Mari 4~[stem=Mari,case=nominative,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=11] 
+            (lex liest 6~[stem=read,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Bücher 15~[stem=book,case=accusative,person=3,number=pl,gender=masc]))))
+// ja
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=13,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Jüri 10~[stem=Jüri,case=nominative,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=12]
+             (lex schreibt 12~[stem=write,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=7]
+           (head N 17~[{18},ref=7]
+                  (lex Bücher 18~[stem=book,case=accusative,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// sentence 7c - example 22 in the article
+// Raamatuid Mari loeb ja Jüri kirjutab raamatuid --  Bücher liest Mari und Jüri schreibt Bücher
+// no elision possible
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Bücher 15~[stem=book,case=accusative,person=3,number=pl,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex liest 6~[stem=read,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Mari 4~[stem=Mari,case=nominative,person=3,number=sg,gender=fem]))))
+// ja
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=13,head={11}]
+     (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Jüri 10~[stem=Jüri,case=nominative,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=12]
+             (lex schreibt 12~[stem=write,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=7]
+           (head N 17~[{18},ref=7]
+                  (lex Bücher 18~[stem=book,case=accusative,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// sentence 7d - example 23 in the article
+// Raamatuid Mari loeb ja raamatuid kirjutab Jüri --  Bücher liest Mari und  Bücher schreibt Jüri 
+// becomes: Raamatuid_1 loeb Mari ja raamatuid-f_1 kirjutab Jüri 
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Bücher 15~[stem=book,case=accusative,person=3,number=pl,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex liest 6~[stem=read,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Mari 4~[stem=Mari,case=nominative,person=3,number=sg,gender=fem]))))
+// ja
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=13,head={11}]
+      (dobj NP 16~[{17},ref=7]
+           (head N 17~[{18},ref=7]
+                  (lex Bücher 18~[stem=book,case=accusative,person=3,number=pl,gender=fem])))
+      (head V 11~[{12},ref=12]
+             (lex schreibt 12~[stem=write,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Jüri 10~[stem=Jüri,case=nominative,person=3,number=sg,gender=masc])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+// sentence 8: Hans ißt Äpfel und Birnen ißt Peter
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=13,head={11}]
+      (dobj NP 16~[{17},ref=6]
+            (head N 17~[{18},ref=6]
+                  (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem])))
+      (head V 11~[{12},ref=11]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 9 : Hans ißt Äpfel und Peter ißt Äpfel
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=8]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=1]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=6]
+            (head N 14~[{15},ref=6]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=9,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=6]
+            (head N 17~[{18},ref=6]
+                  (lex Äpfel 18~[stem=apple,case=4,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 10: Hans ißt Äpfel und Peter ißt im Auto
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=73]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14}]
+            (head N 14~[{15}]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter ißt im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 10a - example 11 in the paper
+// **Mari ostab pirne ja Jüri _g turul - Mari kauft Birnen und Jüri _g auf dem Markt
+// no elision possible due to non-constrativeness
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=73]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Mari 4~[stem=Mari,case=nominative,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=11] 
+            (lex kauft 6~[stem=buy,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14}]
+            (head N 14~[{15}]
+                  (lex Birnen 15~[stem=pear,case=accusative,person=3,number=pl,gender=fem]))))
+// ja
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Jüri 10~[stem=Jüri,case=nominative,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex kauft 12~[stem=buy,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=66]
+          (head Prep 5~[{6},ref=13]
+              (lex auf 6~[stem=on]))
+          (obj NP 2~[{4}]
+           (det DETP [ref=3]
+               (head DET [ref=3]
+                  (lex dem [stem=the,case=3,person=3,number=sg,gender=masc])))
+            (head N 3~[{4}t,ref=11]
+                  (lex Markt 4~[stem=market,case=3,person=3,number=sg,gender=masc]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 11: Hans schläft selten und Peter schläft im Auto
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=73]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+      (mod ADVP 5~[{6},mod-type=vmod,ref=18]
+             (head ADV 5~[{6},mod-type=vmod,ref=18]
+                  (lex selten 6~[stem=rarely]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter ißt im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 11a - example 10 in the paper
+// Jüri elab Tartus ja Tallinnas _g tema pojad - Jüri lebt in Tartu und in Tallinn _g seine Söhne
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=73]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Jüri 4~[stem=Jüri,case=nominative,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex lebt 6~[stem=live,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex in 6~[stem=in]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4}t,ref=11]
+                  (lex Tartu 4~[stem=Tartu,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+          (mod PossPron 5~[{6},mod-type=deictic,ref=22]
+           (lex seine 6~[stem=his,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Söhne 10~[stem=son,case=nominative,person=3,number=pl,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex leben 12~[stem=live,tense=present,person=3,number=pl,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=66]
+          (head Prep 5~[{6},ref=13]
+              (lex in 6~[stem=in]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4}t,ref=116]
+                  (lex Tallin 4~[stem=Tallin,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 11b - example 14 in the paper
+// Mu õde elab Narvas ja mu vend _g samuti/ka. --- Meine Schwester lebt in Narva und meine Brüder _g ebenso/ auch
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=73]
+      (subj NP 2~[{4},ref=1]
+           (mod PossPron 5~[{6},mod-type=deictic,ref=22]
+           (lex Meine 6~[stem=my,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Schwester 10~[stem=sister,case=nominative,person=3,number=pl,gender=fem])))
+      (head V 5~[{6},ref=11] 
+            (lex lebt 6~[stem=live,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex in 6~[stem=in]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4}t,ref=11]
+                  (lex Narva 4~[stem=Narva,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=62]
+          (mod PossPron 5~[{6},mod-type=deictic,ref=72]
+           (lex meine 6~[stem=my,case=nominative,person=3,number=pl,gender=mask]))
+            (head N 9~[{10}]
+                  (lex Brüder 10~[stem=brother,case=nominative,person=3,number=pl,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex leben 12~[stem=live,tense=present,person=3,number=pl,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex in 6~[stem=in]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4}t,ref=11]
+                  (lex Narva 4~[stem=Narva,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 12 : ich hoffe Hans schläft und du hoffst Peter schläft
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=12]
+            (head PersPron 21~[{40},ref=12]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffe 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=14]
+               (subj NP 2~[{4},ref=1]
+                     (head PropN 3~[{4},ref=8]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=3]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=10]
+            (head PersPron 21~[{40},ref=10]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffst 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+// Peter schläft
+(cmp S 7~[subject={10},ref=13,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=3]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//sentence 13: ich hoffe dass Hans schläft und du hoffst dass Peter schläft
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffe 26~[stem=hope,tense=present,person=1,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=31]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=6]
+                     (head PropN 3~[{4},ref=6]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=8]
+            (head PersPron 21~[{40},ref=8]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffst 26~[stem=hope,tense=present,person=2,number=sg,mode=active]))
+// Peter schläft
+(cmp S 7~[subject={10},ref=21,head={11}]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 14: Heute soll Hans sein Auto putzen und heute soll  Susi ihr Fahrrad putzen
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Heute 6~[stem=today])))
+      (head V 5~[{6},ref=9]
+            (lex soll 6~[stem=should,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=17]
+       (dobj NP 2~[{4},ref=6]
+          (mod PossPron 5~[{6},mod-type=time,ref=22]
+           (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+              (head N 3~[{4},ref=6]
+                   (lex Auto 4~[stem=car,case=4,person=3,number=sg,gender=neuter])))
+            (head V 5~[{6},ref=7]
+                 (lex putzen 6~[stem=clean,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=19]
+      (mod ADVP 5~[{6},mod-type=time,ref=22]
+       (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex heute 6~[stem=heute])))
+      (head V 5~[{6},ref=9]
+            (lex soll 6~[stem=soll,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=3]
+            (head PropN 3~[{4},ref=3]
+                  (lex Susi 4~[stem=Susi,case=1,person=3,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=7]
+       (dobj NP 2~[{4},ref=4]
+          (mod PossPron 5~[{6},mod-type=time,ref=22]
+           (lex ihr 6~[stem=her,case=4,person=3,number=sg,gender=fem]))
+               (head N 3~[{4},ref=4]
+                   (lex Fahrrad 4~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+            (head V 5~[{6},ref=7]
+                 (lex putzen 6~[stem=clean,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 15: Heute soll   Hans Autos      putzen    und zwar soll Hans heute Autos putzen bis Mitternacht 
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Heute 6~[stem=today])))
+      (head V 5~[{6},ref=9]
+            (lex soll 6~[stem=should,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=8]
+       (dobj NP 2~[{4},ref=6]
+              (head N 3~[{4},ref=6]
+                   (lex Autos 4~[stem=car,case=4,person=3,number=pl,gender=neuter])))
+            (head V 5~[{6},ref=7]
+                 (lex putzen 6~[stem=clean,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=39]
+     (mod ADVP 5~[{6},mod-type=emph,ref=21]
+     (head ADV 5~[{6},mod-type=emph,ref=21]
+           (lex zwar 6~[stem=though])))
+      (head V 5~[{6},ref=9]
+            (lex soll 6~[stem=should,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+         (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex heute 6~[stem=today])))
+     (cmp S 5~[{6},ref=17]
+        (dobj NP 2~[{4},ref=6]
+            (head N 3~[{4},ref=6]
+                 (lex Autos 4~[stem=car,case=4,person=3,number=pl,gender=neuter])))
+            (head V 5~[{6},ref=7]
+                 (lex putzen 6~[stem=clean,tense=infinitive,mode=active]))
+        (mod PP 12~[{14},mod-type=temp,ref=16]
+          (head Prep 5~[{6},ref=13]
+              (lex bis 6~[stem=until]))
+          (dobj NP 2~[{4},ref=31]
+            (head N 3~[{4},ref=31]
+                  (lex Mitternacht 4~[stem=midnight,case=1,person=3,number=sg,gender=fem])))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 16 : Äpfel mag ich und Äpfel esse ich oft
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+       (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+      (head V 5~[{6},ref=12] 
+            (lex mag 6~[stem=like,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 2~[{4},ref=1]
+            (head PersPron 3~[{4},ref=17]
+                  (lex ich 4~[stem=I,case=1,person=3,number=sg,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+      (conj S 1~[subject={2},head={5},ref=13]
+       (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex esse 6~[stem=eat,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 2~[{4},ref=1]
+            (head PersPron 3~[{4},ref=17]
+                  (lex ich 4~[stem=I,case=1,person=3,number=sg,gender=masc])))
+    (mod ADVP 5~[{6},mod-type=vmod,ref=37]
+    (head ADV 5~[{6},mod-type=vmod,ref=37]
+           (lex oft 6~[stem=often])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 17: Äpfel mag ich und Äpfel esse ich 
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+       (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+      (head V 5~[{6},ref=12] 
+            (lex mag 6~[stem=like,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 2~[{4},ref=1]
+            (head PersPron 3~[{4},ref=17]
+                  (lex ich 4~[stem=I,case=1,person=3,number=sg,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+      (conj S 1~[subject={2},head={5},ref=13]
+       (dobj NP 13~[{14},ref=7]
+            (head N 14~[{15},ref=7]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex esse 6~[stem=eat,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 2~[{4},ref=1]
+            (head PersPron 3~[{4},ref=17]
+                  (lex ich 4~[stem=I,case=1,person=3,number=sg,gender=masc])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 18 : Hans stiehlt Fahrräder und Hans verkauft Fahrräder
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=8]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=1]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11] 
+            (lex stiehlt 6~[stem=steal,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=6]
+            (head N 14~[{15},ref=6]
+                  (lex Fahrräder 15~[stem=bike,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=9,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10},ref=1]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=21]
+             (lex verkauft 12~[stem=sell,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=6]
+            (head N 17~[{18},ref=6]
+                  (lex Fahrräder 18~[stem=bike,case=4,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//Sentence 19: Susi hörte dass Hans Fahrräder stiehlt und dass Hans Fahrräder verkauft
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40}]
+                  (lex Susi 40~[stem=Susi,case=1,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14},ref=6]
+                        (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=5]
+                         (lex stiehlt 6~[stem=steal,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                  (dobj NP 13~[{14},ref=6]
+                        (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=19]
+                       (lex verkauft 26~[stem=sell,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 19a - example 15 in the paper
+// Susi kuulis et Jan oma jalgratta asjatundlikult parandas
+// Susi hörte dass Jan sein Fahrrad fachkundig reparierte
+// ja [et Jan oma jalgratta]_f hoolikalt puhastas
+// und [dass Jan sein Fahrrad]_f eifrig putzte
+// becomes: Susi kuulis et_1 Jan_1 oma_1 jalgratta_1 asjatundlikult parandas ja et-f_1 Jan-f_1 oma-f_1 jalgratta-f_1 hoolikalt puhastas 
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40}]
+                  (lex Susi 40~[stem=Susi,case=nominative,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=18]
+                      (head ADV 5~[{6},mod-type=vmod,ref=18]
+                         (lex fachkundig 6~[stem=expertly])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=88]
+                      (head ADV 5~[{6},mod-type=vmod,ref=88]
+                         (lex eifrig 6~[stem=diligently])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzte 6~[stem=clean,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 19b - example 16 in the paper
+// Susi kuulis et Jan asjatundlikult oma jalgratta parandas
+// Susi hörte dass Jan fachkundig sein Fahrrad reparierte
+// ja [et Jan]_f hoolikalt oma jalgratta puhastas
+// und [dass Jan]_f eifrig sein Fahrrad putzte
+// becomes: usi kuulis et_1 Jan_1 asjatundlikult oma jalgratta parandas ja et-f_1 Jan-f_1 hoolikalt oma jalgratta puhastas 
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40}]
+                  (lex Susi 40~[stem=Susi,case=nominative,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=18]
+                      (head ADV 5~[{6},mod-type=vmod,ref=18]
+                         (lex fachkundig 6~[stem=expertly])))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=88]
+                      (head ADV 5~[{6},mod-type=vmod,ref=88]
+                         (lex eifrig 6~[stem=diligently])))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzte 6~[stem=clean,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 19c - example 17 in the paper
+// Jan parandas oma jalgratta asjatundlikult
+// Jan reparierte sein Fahrrad fachkundig 
+// ja Jan_f puhastas oma jalgratta hoolikalt 
+// und Jan_f putzte sein Fahrrad eifrig 
+// becomes: Jan_1 parandas oma jalgratta asjatundlikult ja Jan-f_1 puhastas oma jalgratta hoolikalt 
+(expr S 
+          (conj S 33~[subject={10},ref=1,head={11}]
+                     (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active]))
+                    (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                  (mod ADVP 5~[{6},mod-type=vmod,ref=18]
+                      (head ADV 5~[{6},mod-type=vmod,ref=18]
+                         (lex fachkundig 6~[stem=expertly]))))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzte 6~[stem=clean,tense=past,person=3,number=sg,mode=active]))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=88]
+                      (head ADV 5~[{6},mod-type=vmod,ref=88]
+                         (lex eifrig 6~[stem=diligently])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//Sentence 20 : Susi hörte dass Hans oft Fahrräder stiehlt und dass Hans oft Fahrräder verkauft
+(expr S
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40}]
+                  (lex Susi 40~[stem=Susi,case=1,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=17]
+                      (head ADV 5~[{6},mod-type=vmod,ref=17]
+                         (lex oft 6~[stem=often])))
+                   (dobj NP 13~[{14},ref=6]
+                        (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=5]
+                         (lex stiehlt 6~[stem=steal,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=17]
+                      (head ADV 5~[{6},mod-type=vmod,ref=17]
+                         (lex oft 6~[stem=often])))
+                  (dobj NP 13~[{14},ref=6]
+                        (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=19]
+                       (lex verkauft 26~[stem=sell,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 21 : Susi hörte dass Hans oft Fahrräder stiehlt und dass Hans selten Fahrräder verkauft
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40}]
+                  (lex Susi 40~[stem=Susi,case=1,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=17]
+                      (head ADV 5~[{6},mod-type=vmod,ref=17]
+                         (lex oft 6~[stem=often])))
+                   (dobj NP 13~[{14},ref=6]
+                        (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=5]
+                         (lex stiehlt 6~[stem=steal,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (mod ADVP 5~[{6},mod-type=vmod,ref=18]
+                      (head ADV 5~[{6},mod-type=vmod,ref=18]
+                         (lex selten 6~[stem=rarely])))
+                  (dobj NP 13~[{14},ref=6]
+                        (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=4,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=19]
+                       (lex verkauft 26~[stem=sell,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 22 : Hans versucht Autos zu stehlen und Peter versucht Fahrräder zu verkaufen
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=12]
+            (head PropN 21~[{40},ref=12]
+                (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=9]
+            (lex versuchte 26~[stem=try,tense=past,person=3,number=sg,mode=active]))
+       (cmp S 1~[subject={2},head={5},ref=3]
+               (dobj NP 2~[{4},ref=1]
+                     (head N 3~[{4},ref=1]
+                       (lex Autos 15~[stem=car,case=4,person=3,number=pl,gender=neuter])))
+       (pinfin PP 5~[{6},ref=13]
+          (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+       (head V 5~[{6},ref=3]
+            (lex stehlen 6~[stem=steal,person=3,number=sg,mode=infinitive]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 33~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=22]
+            (head PropN 21~[{40},ref=22]
+                (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=9]
+            (lex versuchte 26~[stem=try,tense=past,person=3,number=sg,mode=active]))
+       (cmp S 1~[subject={2},head={5},ref=15]
+               (dobj NP 2~[{4},ref=11]
+                     (head N 3~[{4},ref=11]
+                       (lex Fahrräder 15~[stem=bike,case=4,person=3,number=pl,gender=neuter])))
+            (pinfin PP 5~[{6},ref=13]
+                  (head Prep 5~[{6},ref=13]
+                       (lex zu 6~[stem=to])))
+            (head V 5~[{6},ref=15]
+                   (lex verkaufen 6~[stem=sell,person=3,number=sg,mode=infinitive])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 23 : Hans versucht Autos zu stehlen und Peter versucht Fahrräder zu stehlen
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=12]
+            (head PropN 21~[{40},ref=12]
+                (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=9]
+            (lex versuchte 26~[stem=try,tense=past,person=3,number=sg,mode=active]))
+       (cmp S 1~[subject={2},head={5},ref=7]
+               (dobj NP 2~[{4},ref=1]
+                     (head N 3~[{4},ref=1]
+                       (lex Autos 15~[stem=car,case=4,person=3,number=pl,gender=neuter])))
+       (pinfin PP 5~[{6},ref=13]
+          (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+       (head V 5~[{6},ref=3]
+            (lex stehlen 6~[stem=steal,person=3,number=sg,mode=infinitive]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 33~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=22]
+            (head PropN 21~[{40},ref=22]
+                (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=9]
+            (lex versuchte 26~[stem=try,tense=past,person=3,number=sg,mode=active]))
+       (cmp S 1~[subject={2},head={5},ref=6]
+               (dobj NP 2~[{4},ref=11]
+                     (head N 3~[{4},ref=11]
+                       (lex Fahrräder 15~[stem=bike,case=4,person=3,number=pl,gender=neuter])))
+       (pinfin PP 5~[{6},ref=13]
+          (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+       (head V 5~[{6},ref=3]
+            (lex stehlen 6~[stem=steal,mode=infinitive])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 24 : Hans hat versucht Autos zu stehlen und Peter hat versucht Fahrräder zu stehlen
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=12]
+            (head PropN 21~[{40},ref=12]
+                (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=19]
+            (lex hat 26~[stem=aux-haben,tense=past,person=3,number=sg,mode=active]))
+       (cmp S 5~[{6},ref=27]
+            (head V 5~[{6},ref=7]      
+                 (lex versucht 26~[stem=try,mode=ptz]))
+           (cmp S 1~[subject={2},head={5},ref=9]
+               (dobj NP 2~[{4},ref=1]
+                     (head N 3~[{4},ref=8]
+                       (lex Autos 15~[stem=car,case=4,person=3,number=pl,gender=neuter])))
+       (pinfin PP 5~[{6},ref=13]
+          (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+       (head V 5~[{6},ref=3]
+            (lex stehlen 6~[stem=steal,person=3,number=sg,mode=infinitive])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 33~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=22]
+            (head PropN 21~[{40},ref=22]
+                (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=19]
+            (lex hat 26~[stem=aux-haben,tense=past,person=3,number=sg,mode=active]))
+       (cmp S 5~[{6},ref=17]
+            (head V 5~[{6},ref=7]      
+                 (lex versucht 26~[stem=try,mode=ptz]))
+            (cmp S 1~[subject={2},head={5},ref=8]
+               (dobj NP 2~[{4},ref=11]
+                     (head N 3~[{4},ref=18]
+                       (lex Fahrräder 15~[stem=bike,case=4,person=3,number=pl,gender=neuter])))
+       (pinfin PP 5~[{6},ref=13]
+          (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+       (head V 5~[{6},ref=3]
+            (lex stehlen 6~[stem=steal,person=3,number=sg,mode=infinitive]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 25 : ich singe während Hans schläft und du singst während Peter schläft
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex singe 26~[stem=sing,tense=present,person=1,number=sg,mode=active]))
+      (mod S 1~[subject={2},mod-type=temp,head={5},ref=31]
+               (cmpr sub-conj 42~[{50},ref=88]
+                   (lex während 50~[stem=während]))
+               (subj NP 2~[{4},ref=6]
+                     (head PropN 3~[{4},ref=6]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=8]
+            (head PersPron 21~[{40},ref=8]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex singst 26~[stem=sing,tense=present,person=2,number=sg,mode=active]))
+      (mod S 7~[subject={10},mod-type=temp,ref=21,head={11}]
+               (cmpr sub-conj 42~[{50},ref=88]
+                   (lex während 50~[stem=während]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 26: ich singe während Hans schläft und du singst während Hans schläft
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex singe 26~[stem=sing,tense=present,person=1,number=sg,mode=active]))
+      (mod S 1~[subject={2},mod-type=temp,head={5},ref=31]
+               (cmpr sub-conj 42~[{50},ref=88]
+                   (lex während 50~[stem=während]))
+               (subj NP 2~[{4},ref=6]
+                     (head PropN 3~[{4},ref=6]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=8]
+            (head PersPron 21~[{40},ref=8]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex singst 26~[stem=sing,tense=present,person=2,number=sg,mode=active]))
+      (mod S 7~[subject={10},mod-type=temp,ref=31,head={11}]
+               (cmpr sub-conj 42~[{50},ref=88]
+                   (lex während 50~[stem=während]))
+               (subj NP 2~[{4},ref=6]
+                     (head PropN 3~[{4},ref=6]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//sentence 27: ich sehe Hans der schläft im Auto und du siehst Peter der schläft im Bus
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex sehe 26~[stem=see,tense=present,person=1,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=8]
+            (head PersPron 21~[{40},ref=8]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex siehst 26~[stem=see,tense=present,person=2,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=66]
+              (head PropN 3~[{4},ref=66]
+                    (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=16]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=31]
+                  (lex Bus 4~[stem=bus,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//sentence 28 : ich sehe Hans der schläft im Auto und du siehst Hans der schläft im Auto 
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex sehe 26~[stem=see,tense=present,person=1,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=8]
+            (head PersPron 21~[{40},ref=8]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex siehst 26~[stem=see,tense=present,person=2,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 29: ich sehe Hans der schläft im Auto und du siehst Hans der schläft im Auto 
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex sehe 26~[stem=see,tense=present,person=1,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+       (subj NP 20~[{40},ref=17]
+            (head PersPron 21~[{40},ref=17]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex siehst 26~[stem=see,tense=present,person=2,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+    (mod PP 12~[{14},mod-type=loc,ref=16]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=21]
+                  (lex Bus 4~[stem=bus,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//sentence 30 : ich sehe Hans der im Auto schläft und Hans der im Bus schläft
+(expr S 
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex sehe 26~[stem=see,tense=present,person=1,number=sg,mode=active]))
+       (dobj NP 2~[{4},ref=6]
+          (conj NP 33~[subject={10},ref=19,head={11}]
+              (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=21,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+              (mod PP 12~[{14},mod-type=loc,ref=6]
+                 (head Prep 5~[{6},ref=13]
+                    (lex im 6~[stem=in-the]))
+                 (obj NP 2~[{4},ref=11]
+                   (head N 3~[{4}t,ref=11]
+                       (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+          (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+        (conj NP 30~[subject={10},ref=20,head={11}]
+               (head PropN 3~[{4},ref=6]
+                    (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+             (mod S 7~[subject={10},mod-type=rel,ref=22,head={11}]
+                 (subj NP 8~[{10},ref=2]
+                    (head RelP 9~[{10},ref=2]
+                       (lex der 10~[stem=who,case=1,person=3,number=sg,gender=masc])))
+              (mod PP 12~[{14},mod-type=loc,ref=36]
+                (head Prep 5~[{6},ref=13]
+                    (lex im 6~[stem=in-the]))
+                (obj NP 2~[{4},ref=31]
+                  (head N 3~[{4},ref=31]
+                     (lex Bus 4~[stem=bus,case=3,person=3,number=sg,gender=neuter]))))
+              (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 31 : ich hoffe dass Hans schläft und dass Peter schläft
+(expr S 
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffe 26~[stem=hope,tense=present,person=1,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=31]
+           (conj S 33~[subject={10},ref=19,head={11}]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=6]
+                     (head PropN 3~[{4},ref=6]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active])))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 32 : ich will hoffen dass Hans schläft und du willst hoffen dass Peter schläft
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=1]
+            (head PersPron 21~[{40},ref=1]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex will 26~[stem=want-to,tense=present,person=1,number=sg,mode=active]))
+      (cmp S 5~[{6},ref=22]
+          (head V 5~[{6},ref=23]
+            (lex hoffen 26~[stem=hope,tense=infinitive]))
+      (cmp S 1~[subject={2},head={5},ref=42]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=1]
+                     (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=31]
+            (head PersPron 21~[{40},ref=31]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex willst 26~[stem=want-to,tense=present,person=2,number=sg,mode=active]))
+      (cmp S 5~[{6},ref=22]
+           (head V 5~[{6},ref=23]
+            (lex hoffen 26~[stem=hope,tense=infinitive]))
+// Peter schläft
+(cmp S 7~[subject={10},ref=41,head={11}]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 33 : Dass Hans Äpfel ißt und dass Maria Birnen ißt weiss jeder und
+//dass Peter Wein trinkt und Susi Biert trinkt weiss keiner
+(expr S 
+   (conj S 33~[subject={10},ref=1,head={11}]
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex Dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                     (dobj NP 13~[{14}]
+                     (head N 14~[{15}]
+                        (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=8]
+                     (head PropN 3~[{4}]
+                           (lex Maria 4~[stem=Maria,case=1,person=3,number=sg,gender=masc])))
+                 (dobj NP 13~[{14}]
+                  (head N 14~[{15}]
+                       (lex Birnen 15~[stem=pear,case=4,person=3,number=pl,gender=masc])))
+             (head V 5~[{6},ref=5]
+                     (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))))
+       (head V 5~[{6},ref=9]
+            (lex weiss 26~[stem=know,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=47]
+            (head IndefPron 21~[{40},ref=47]
+                  (lex jeder 40~[stem=everybody,case=1,person=3,number=sg]))))
+  (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 33~[subject={10},ref=71,head={11}]
+        (cmp S 1~[subject={2},head={5},ref=3]
+           (conj S 63~[subject={10},ref=2,head={11}]
+              (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+               (dobj NP 13~[{14}]
+                  (head N 14~[{15}]
+                       (lex Wein 15~[stem=wine,case=4,person=3,number=pl,gender=masc])))
+             (head V 5~[{6},ref=5]
+                     (lex trinkt 6~[stem=drink,tense=present,person=3,number=sg,mode=active])))
+        (coord C 13~[{12}] 
+           (lex und 12~[stem=and]))
+        (conj S 73~[subject={10},ref=16,head={11}]
+                (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=18]
+                     (head PropN 3~[{4}]
+                           (lex Susi 4~[stem=Susi,case=1,person=3,number=sg,gender=masc])))
+               (dobj NP 13~[{14}]
+                  (head N 14~[{15}]
+                       (lex Bier 15~[stem=beer,case=4,person=3,number=pl,gender=masc])))
+               (head V 5~[{6},ref=5]
+                     (lex trinkt 6~[stem=drink,tense=present,person=3,number=sg,mode=active]))))
+       (head V 5~[{6},ref=9]
+            (lex weiss 26~[stem=know,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=48]
+            (head IndefPron 21~[{40},ref=48]
+                  (lex keiner 40~[stem=nobody,case=1,person=3,number=sg])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 34 : Dass Hans Äpfel ißt weiss jeder und
+//dass Hans Birnen ißt weiss keiner
+(expr S 
+   (conj S 33~[subject={10},ref=1,head={11}]
+      (cmp S 1~[subject={2},head={5},ref=33]
+                    (cmpr sub-conj 42~[{50},ref=99]
+                        (lex Dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                     (dobj NP 13~[{14},ref=11]
+                     (head N 14~[{15},ref=11]
+                        (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active])))
+        (head V 5~[{6},ref=9]
+            (lex weiss 26~[stem=know,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=48]
+            (head IndefPron 21~[{40},ref=48]
+                  (lex jeder 40~[stem=everybody,case=1,person=3,number=sg]))))
+  (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 33~[subject={10},ref=21,head={11}]
+      (cmp S 1~[subject={2},head={5},ref=43]
+                    (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                     (dobj NP 13~[{14},ref=12]
+                     (head N 14~[{15},ref=12]
+                        (lex Birnen 15~[stem=pear,case=4,person=3,number=pl,gender=fem])))
+                    (head V 5~[{6},ref=5]
+                         (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active])))
+        (head V 5~[{6},ref=9]
+            (lex weiss 26~[stem=know,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=47]
+            (head IndefPron 21~[{40},ref=47]
+                  (lex keiner 40~[stem=nobody,case=1,person=3,number=sg])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 35 : Dass Hans Äpfel essen will und dass Maria Birnen essen weiss jeder und
+//dass Peter Wein trinken will und Susi Biert trinken will weiss keiner
+(expr S 
+   (conj S 33~[subject={10},ref=1,head={11}]
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex Dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                     (cmp S 
+                        (dobj NP 13~[{14}]
+                           (head N 14~[{15}]
+                              (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+                        (head V 5~[{6},ref=20]
+                           (lex essen 26~[stem=eat,tense=infinitive])))
+                    (head V 5~[{6},ref=19]
+                       (lex will 26~[stem=want-to,tense=present,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=8]
+                     (head PropN 3~[{4}]
+                           (lex Maria 4~[stem=Maria,case=1,person=3,number=sg,gender=masc])))
+                    (cmp S 
+                        (dobj NP 13~[{24}]
+                           (head N 14~[{25}]
+                              (lex Birnen 15~[stem=pear,case=4,person=3,number=pl,gender=masc])))
+                        (head V 5~[{6},ref=20]
+                           (lex essen 26~[stem=eat,tense=infinitive])))
+                    (head V 5~[{6},ref=19]
+                       (lex will 26~[stem=want-to,tense=present,person=3,number=sg,mode=active]))))
+       (head V 5~[{6},ref=9]
+            (lex weiss 26~[stem=know,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=48]
+            (head IndefPron 21~[{40},ref=48]
+                  (lex jeder 40~[stem=everybody,case=1,person=3,number=sg]))))
+  (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 33~[subject={10},ref=71,head={11}]
+        (cmp S 1~[subject={2},head={5},ref=3]
+           (conj S 63~[subject={10},ref=2,head={11}]
+              (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+                    (cmp S 
+                        (dobj NP 13~[{14}]
+                           (head N 14~[{15}]
+                              (lex Wein 15~[stem=wine,case=4,person=3,number=sg,gender=masc])))
+                        (head V 5~[{6},ref=20]
+                           (lex trinken 26~[stem=drink,tense=infinitive])))
+                    (head V 5~[{6},ref=19]
+                       (lex will 26~[stem=want-to,tense=present,person=3,number=sg,mode=active])))
+        (coord C 13~[{12}] 
+           (lex und 12~[stem=and]))
+        (conj S 73~[subject={10},ref=16,head={11}]
+                (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=18]
+                     (head PropN 3~[{4}]
+                           (lex Susi 4~[stem=Susi,case=1,person=3,number=sg,gender=masc])))
+                    (cmp S 
+                        (dobj NP 13~[{24}]
+                           (head N 14~[{25}]
+                              (lex Bier 15~[stem=beer,case=4,person=3,number=sg,gender=neuter])))
+                        (head V 5~[{6},ref=20]
+                           (lex trinken 26~[stem=drink,tense=infinitive])))
+                    (head V 5~[{6},ref=19]
+                       (lex will 26~[stem=want-to,tense=present,person=3,number=sg,mode=active]))))
+       (head V 5~[{6},ref=9]
+           (lex weiss 26~[stem=know,tense=present,person=1,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=47]
+            (head IndefPron 21~[{40},ref=47]
+                  (lex keiner 40~[stem=nobody,case=1,person=3,number=sg])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 36 : Dass Hans einen Unfall hatte und dass Hans sterben könnte hörte Susi
+(expr S 
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex Dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14}]
+                      (det DETP  [ref=13]
+                         (head DET  [ref=13]
+                            (lex einen [stem=a,case=4,person=3,number=sg,gender=masc])))
+                       (head N 14~[{15}]
+                           (lex Unfall 15~[stem=accident,case=4,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex hatte 6~[stem=have,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                 (cmp S 13~[{14}]
+                      (head V 5~[{6},ref=20]
+                           (lex sterben 26~[stem=die,tense=infinitive])))
+                    (head V 5~[{6},ref=19]
+                       (lex könnte 26~[stem=could,tense=past,person=3,number=sg,mode=active]))))
+        (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+     (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40},ref=48]
+                  (lex Susi 40~[stem=Susi,case=1,person=3,number=sg]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 40 : Susi hörte dass Hans einen Unfall hatte und dass Hans sterben könnte
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40},ref=48]
+                  (lex Susi 40~[stem=Susi,case=1,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14}]
+                      (det DETP  [ref=13]
+                         (head DET  [ref=13]
+                            (lex einen [stem=a,case=4,person=3,number=sg,gender=masc])))
+                       (head N 14~[{15}]
+                           (lex Unfall 15~[stem=accident,case=4,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex hatte 6~[stem=have,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                  (subj NP 2~[{4},ref=4]
+                     (head PropN 3~[{4}]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                 (cmp S 13~[{14}]
+                      (head V 5~[{6},ref=20]
+                           (lex sterben 26~[stem=die,tense=infinitive])))
+                    (head V 5~[{6},ref=19]
+                       (lex könnte 26~[stem=could,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//Susi hörte dass Hans einen Unfall gehabt hat und dass Peter einen Lottogewinn gehabt hat
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40},ref=48]
+                  (lex Susi 40~[stem=Susi,case=1,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4},ref=4]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                (cmp S 1~[ref=4]
+                  (dobj NP 13~[{14},ref=25]
+                       (head N 14~[{15},ref=11]
+                           (lex Glück 15~[stem=good-luck,case=4,person=3,number=sg,gender=masc])))
+                        (head V 5~[{6},ref=44]
+                         (lex gehabt 6~[stem=have,tense=ptz])))
+                   (head V 5~[{6},ref=5]
+                         (lex hat 6~[stem=aux-have,tense=perfect,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                  (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=14]
+                         (head PropN 3~[{4},ref=14]
+                           (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+                   (cmp S 1~[subject={2},head={5},ref=43]
+                   (dobj NP 13~[{14},ref=15]
+                          (head N 14~[{25},ref=23]
+                           (lex Pech 15~[stem=bad-luck,case=4,person=3,number=sg,gender=masc])))
+                       (head V 5~[{6},ref=44]
+                         (lex gehabt 6~[stem=have,tense=ptz])))
+                   (head V 5~[{6},ref=5]
+                         (lex hat 6~[stem=aux-have,tense=perfect,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 39 - Hans schält Äpfel im Auto und Peter ißt Äpfel im Auto
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=19] 
+            (lex schält 6~[stem=peal,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=8]
+            (head N 14~[{15},ref=8]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter ißt im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=8]
+            (head N 14~[{15},ref=8]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 40 - Ich hoffe Hans ißt Äpfel und Peter ißt Birnen 
+(expr S 
+      (subj NP 20~[{40},ref=48]
+            (head PersPron 21~[{40},ref=48]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 
+            (lex hoffe 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+      (cmp S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14}]
+            (head N 14~[{15}]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=9]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17}]
+            (head N 17~[{18}]
+                  (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 41 : Ich hoffe Hans ißt und Peter ißt 
+(expr S 
+      (subj NP 20~[{40},ref=48]
+            (head PersPron 21~[{40},ref=48]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 
+            (lex hoffe 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+      (cmp S 
+      (conj S 1~[subject={2},head={5},ref=3]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active])))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=13,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=9]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 42: Ich hoffe dass Hans Äpfel essen kann und dass Peter  Birnen essen kann 
+(expr S 
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V [ref=66]   
+            (lex hoffe 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+      (cmp S [ref=77]  
+      (conj S 1~[subject={2},head={5},ref=3]
+                (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+                (subj NP 2~[{4},ref=1]
+                    (head PropN 3~[{4},ref=1]
+                        (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+                     (cmp S [ref=20] 
+                        (dobj NP 13~[{14},ref=77]
+                           (head N 14~[{15},ref=77]
+                              (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc])))
+                        (head V 5~[{6},ref=7]
+                            (lex essen 6~[stem=eat,tense=infinitive,mode=active])))
+                (head V 5~[{6},ref=19]
+                     (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active])))
+// und
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans ißt
+(conj S 7~[subject={10},ref=83,head={11}]
+       (cmpr sub-conj 42~[{50},ref=99]
+            (lex dass 50~[stem=that]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10},ref=2]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+                 (cmp S [ref=21] 
+                         (dobj NP 13~[{14},ref=78]
+                           (head N 14~[{15},ref=78]
+       			            (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem])))
+                        (head V 5~[{6},ref=7]
+                            (lex essen 6~[stem=eat,tense=infinitive,mode=active])))
+                (head V 5~[{6},ref=19]
+                     (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 43 
+// Ich hoffe Hans ißt Äpfel und Peter ißt Birnen und du hoffst Michael ißt Äpfel und Robert ißt Birnen 
+(expr S 
+(conj S 33~[subject={10},ref=1,head={11}]
+      (subj NP 20~[{40},ref=11]
+            (head PersPron 21~[{40},ref=11]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 11~[{12},ref=21]
+            (lex hoffe 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+      (cmp S 
+        (conj S 1~[subject={2},head={5},ref=3]
+           (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=1]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+           (head V 5~[{6},ref=7]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+            (dobj NP 13~[{14},ref=17]
+            (head N 14~[{15},ref=17]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+         (coord C 13~[{12}] 
+               (lex und 12~[stem=and]))
+        (conj S 7~[subject={10},ref=3,head={11}]
+            (subj NP 8~[{10},ref=77]
+               (head PropN 9~[{10},ref=77]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+            (head V 11~[{12},ref=7]
+               (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+            (dobj NP 16~[{17},ref=18]
+                 (head N 17~[{18},ref=18]
+                  (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem]))))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=2,head={11}]
+      (subj NP 20~[{40},ref=22]
+            (head PersPron 21~[{40}]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 11~[{12},ref=21]
+            (lex hoffst 26~[stem=hope,tense=present,person=3,number=sg,mode=active]))
+      (cmp S 
+      (conj S 1~[subject={2},head={5},ref=33]
+      (subj NP 2~[{4},ref=4]
+            (head PropN 3~[{4},ref=4]
+                  (lex Michael 4~[stem=Michael,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=7]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 13~[{14},ref=17]
+            (head N 14~[{15},ref=17]
+                  (lex Äpfel 15~[stem=apple,case=4,person=3,number=pl,gender=masc]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=5]
+            (head PropN 9~[{10},ref=5]
+                  (lex Robert 10~[stem=Robert,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=7]
+             (lex ißt 12~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+      (dobj NP 16~[{17},ref=18]
+            (head N 17~[{18},ref=18]
+                  (lex Birnen 18~[stem=pear,case=4,person=3,number=pl,gender=fem])))))))
+///////////////////////////////////////////////////////////////////////////////////
+/// beginning of BCR testing 
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 44a - example 18 in the paper
+// Jan parandas oma jalgratta 
+// Jan reparierte sein Fahrrad 
+// ja Peeter puhastas oma jalgratta 
+// und Peeter putzte sein Fahrrad 
+// becomes: 
+(expr S 
+          (conj S 33~[subject={10},ref=1,head={11}]
+                     (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active]))
+                    (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=neuter]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter]))))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                    (subj NP 2~[{4},ref=41]
+                         (head PropN 3~[{41}]
+                           (lex Peter 4~[stem=Peter,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzte 6~[stem=clean,tense=past,person=3,number=sg,mode=active]))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=neuter]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 44b - example 19 in the paper
+// Susi kuulis et Jan oma jalgratta parandas
+// Susi hörte dass Jan sein Fahrrad reparierte
+// ja et Peeter oma jalgratta puhastas
+// und dass Peeter sein Fahrrad  putzte
+// becomes: 
+(expr S 
+    (subj NP 20~[{40},ref=48]
+            (head PropN 21~[{40}]
+                  (lex Susi 40~[stem=Susi,case=nominative,person=3,number=sg])))
+       (head V 5~[{6},ref=9]
+            (lex hörte 26~[stem=hear,tense=past,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=33]
+         (conj S 33~[subject={10},ref=1,head={11}]
+                   (cmpr sub-conj 42~[{50},ref=99]
+                        (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active])))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                 (cmpr sub-conj 42~[{50},ref=99]
+                    (lex dass 50~[stem=that]))
+                    (subj NP 2~[{4},ref=47]
+                         (head PropN 3~[{47}]
+                           (lex Peter 4~[stem=Peter,case=nominative,person=3,number=sg,gender=masc])))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzte 6~[stem=clean,tense=past,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 44c - example 20 in the paper
+// Jan parandas oma uue jalgrattab
+// Jan reparierte sein neues Fahrrad_b
+// ja tema vennad puhastasid oma vanad jalgrattad
+// und seine Brüder putzten ihre alten Fahrräder
+// becomes: 
+(expr S 
+          (conj S 33~[subject={10},ref=1,head={11}]
+                     (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active]))
+                    (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=mask]))
+          	          (mod ADJP 12~[{14},mod-type=attr,ref=6]
+                               (head ADJ 5~[{6},ref=13]
+                                  (lex neues 6~[stem=new,case=nominative,person=3,number=sg,gender=neuter])))    
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter]))))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                (subj NP 8~[{10},ref=62]
+                   (mod PossPron 5~[{6},mod-type=deictic,ref=72]
+                     (lex seine 6~[stem=his,case=nominative,person=3,number=pl,gender=mask]))
+                  (head N 9~[{10}]
+                      (lex Brüder 10~[stem=brother,case=nominative,person=3,number=pl,gender=masc])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzten 6~[stem=clean,tense=past,person=3,number=pl,mode=active]))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex ihre 6~[stem=their,case=4,person=3,number=pl,gender=neuter]))
+          	          (mod ADJP 12~[{14},mod-type=attr,ref=33]
+                               (head ADJ 5~[{6},ref=33]
+                                  (lex alten 6~[stem=old,case=nominative,person=3,number=pl,gender=neuter])))    
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrräder 15~[stem=bike,case=accusative,person=3,number=pl,gender=neuter])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 44 - Hans schläft im Auto und Peter arbeitet im Auto
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=9]
+// Hans schläft im Auto 
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=12]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=10]
+             (lex arbeitet 12~[stem=work,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=12]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=11]
+     (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 45 - Hans schläft im Auto und Peter schläft im Auto
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=3]
+// Hans schläft im Auto 
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+            (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=12]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4},ref=11]
+            (head N 3~[{4},ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=9]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=12]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4},ref=11]
+            (head N 3~[{4},ref=11]
+     (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 46 - Hans schläft im Auto und Peter schläft am Auto
+(expr S 
+      (conj S 1~[subject={2},head={5}]
+// Hans schläft im Auto 
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=7]
+            (lex arbeitet 6~[stem=work,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=13]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}t,ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=7]
+             (lex arbeitet 12~[stem=work,tense=present,person=3,number=sg,mode=active]))
+     (mod PP 12~[{14},mod-type=loc,ref=8]
+          (head Prep 5~[{6},ref=12]
+              (lex am 6~[stem=at-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=11]
+                   (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 47 - Hans schläft immer im Auto und Peter arbeitet manchmal im Auto
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=9]
+// Hans schläft im Auto 
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6}]
+            (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=37]
+     (head ADV 5~[{6},mod-type=vmod,ref=37]
+           (lex immer 6~[stem=always])))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=12]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=11]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12}]
+             (lex arbeitet 12~[stem=work,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=36]
+        (head ADV 5~[{6},mod-type=vmod,ref=36]
+           (lex manchmal 6~[stem=sometimes])))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=12]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=11]
+     (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 48 - Hans schläft immer im Auto und Peter arbeitet manchmal im Auto mit Maria
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=9]
+// Hans schläft im Auto 
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6}]
+            (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=37]
+     (head ADV 5~[{6},mod-type=vmod,ref=37]
+           (lex immer 6~[stem=always])))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=12]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12}]
+             (lex arbeitet 12~[stem=work,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod]
+    (head ADV 5~[{6},mod-type=vmod]
+           (lex manchmal 6~[stem=sometimes])))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=12]
+     (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))
+    (mod PP 12~[{14},ref=15,mod-type=vmod]
+          (head Prep 5~[{6},ref=13]
+              (lex mit 6~[stem=with]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4},ref=14]
+                (lex Maria 4~[stem=Maria,case=3,person=3,number=sg,gender=fem]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 49 - Hans singt immer im Auto mit Susy und Peter komponiert manchmal im Auto mit Maria
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=9]
+// Hans schläft im Auto 
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6}]
+            (lex singt 6~[stem=sing,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=37]
+     (head ADV 5~[{6},mod-type=vmod,ref=37]
+           (lex immer 6~[stem=always])))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=12]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))
+    (mod PP 12~[{14},mod-type=vmod,ref=19]
+          (head Prep 5~[{6},ref=13]
+              (lex für 6~[stem=for]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4},ref=14]
+                (lex Susi 4~[stem=Susi,case=3,person=3,number=sg,gender=fem])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12}]
+             (lex komponiert 12~[stem=compose,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=36]
+     (head ADV 5~[{6},mod-type=vmod,ref=36]
+           (lex manchmal 6~[stem=sometimes])))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=12]
+                 (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))
+    (mod PP 12~[{14},mod-type=vmod,ref=15]
+          (head Prep 5~[{6},ref=13]
+              (lex für 6~[stem=for]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4},ref=15]
+                (lex Maria 4~[stem=Maria,case=3,person=3,number=sg,gender=fem]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 50 : Hans komponiert immer im Auto für Maria und Peter komponiert manchmal im Auto für Maria
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=9]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=10]
+            (lex komponiert 6~[stem=compose,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=37]
+     (head ADV 5~[{6},mod-type=vmod,ref=37]
+           (lex immer 6~[stem=always])))
+     (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=12]
+                  (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))
+    (mod PP 12~[{14},mod-type=vmod,ref=12]
+          (head Prep 5~[{6},ref=13]
+              (lex für 6~[stem=for]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4},ref=14]
+                (lex Maria 4~[stem=Maria,case=3,person=3,number=sg,gender=fem])))))
+(coord C 13~[{12}]
+    (lex und 12~[stem=and]))
+// Peter arbeitet im Auto
+(conj S 7~[subject={10},ref=9,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=10]
+             (lex komponiert 12~[stem=compose,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=vmod,ref=36]
+        (head ADV 5~[{6},mod-type=vmod,ref=36]
+           (lex manchmal 6~[stem=sometimes])))
+    (mod PP 12~[{14},mod-type=loc,ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex im 6~[stem=in-the]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4},ref=12]
+                 (lex Auto 4~[stem=car,case=3,person=3,number=sg,gender=neuter]))))
+    (mod PP 12~[{14},mod-type=vmod,ref=12]
+          (head Prep 5~[{6},ref=13]
+              (lex für 6~[stem=for]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4},ref=14]
+                (lex Maria 4~[stem=Maria,case=3,person=3,number=sg,gender=fem]))))))
+///////////////////////////////////////////////////////////////////////////////////
+// beginning of FCR testing
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 51 : Hans ißt und Hans trinkt 
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6}]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active])))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans trinkt
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12}]
+             (lex trinkt 12~[stem=drink,tense=present,person=3,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 52 : Heute ißt Hans und morgen trinkt Hans 
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Heute 6~[stem=today])))
+       (head V 5~[{6}]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=15]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans trinkt
+(conj S 7~[subject={10},ref=3,head={11}]
+      (mod ADVP5~[{6},mod-type=time,ref=23]
+      (head ADV 5~[{6},mod-type=time,ref=23]
+           (lex morgen 6~[stem=tomorrow])))
+      (head V 11~[{12}]
+             (lex trinkt 12~[stem=drink,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10},ref=15]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 52a : Heute ißt Hans und heute trinkt Hans 
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Heute 6~[stem=today])))
+       (head V 5~[{6}]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=15]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans trinkt
+(conj S 7~[subject={10},ref=3,head={11}]
+      (mod ADVP5~[{6},mod-type=time,ref=22]
+      (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex heute 6~[stem=today])))
+      (head V 11~[{12}]
+             (lex trinkt 12~[stem=drink,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10},ref=15]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 53 : Hans will heute schlafen und Hans will morgen schlafen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}},ref=1]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=45]
+           (mod ADVP 5~[{6},mod-type=time,ref=23]
+           (head ADV 5~[{6},mod-type=time,ref=23]
+               (lex heute 6~[stem=today])))
+            (head V 5~[{6},ref=5]
+                 (lex schlafen 6~[stem=sleep,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans will trauemen
+(conj S 7~[subject={10},ref=72,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10},ref=1]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+     (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 5~[{6},ref=44]
+            (mod ADVP 5~[{6},mod-type=time,ref=22]
+            (head ADV 5~[{6},mod-type=time,ref=22]
+               (lex morgen 6~[stem=tomorrow])))
+            (head V 5~[{6},ref=5]
+                  (lex schlafen 12~[stem=sleep,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 54 : Hans aus Berlin will heute ankommen und Hans aus Berlin will morgen abreisen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=2]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+            (mod PP 12~[{14},ref=15]
+                (head Prep 5~[{6},mod-type=loc,ref=16]
+                    (lex aus 6~[stem=from]))
+                (obj NP 2~[{4},ref=17]
+                    (head PropN 3~[{4},ref=18]
+                        (lex Berlin 4~[stem=Berlin,case=3,person=3,number=sg,gender=neuter])))))
+      (head V 5~[{6},ref=4]
+            (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVO 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex heute 6~[stem=today])))
+     (cmp S 
+            (head V 5~[{6},ref=5]
+                 (lex ankommen 6~[stem=arrive,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=2]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+            (mod PP 12~[{14},mod-type=loc,ref=15]
+                (head Prep 5~[{6},ref=16]
+                    (lex aus 6~[stem=from]))
+                (obj NP 2~[{4},ref=17]
+                    (head PropN 3~[{4},ref=18]
+                        (lex Berlin 4~[stem=Berlin,case=3,person=3,number=sg,gender=neuter])))))
+      (head V 5~[{6},ref=4]
+            (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=time,ref=23]
+     (head ADV 5~[{6},mod-type=time,ref=23]
+           (lex morgen 6~[stem=tomorrow])))
+     (cmp S 
+            (head V 5~[{6},ref=18]
+                  (lex abreisen 12~[stem=leave,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 55 : Hans aus Berlin will heute ankommen und Hans aus Hamburg will morgen abreisen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=5]
+            (head PropN 3~[{4},ref=4]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+            (mod PP 12~[{14},ref=11]
+                (head Prep 5~[{6},mod-type=loc,ref=16]
+                    (lex aus 6~[stem=from]))
+                (obj NP 2~[{4},ref=13]
+                    (head PropN 3~[{4},ref=18]
+                        (lex Berlin 4~[stem=Berlin,case=3,person=3,number=sg,gender=neuter])))))
+      (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex heute 6~[stem=today])))
+     (cmp S 
+            (head V 5~[{6},ref=5]
+                 (lex ankommen 6~[stem=arrive,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans will trauemen
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4},ref=4]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc]))
+            (mod PP 12~[{14},mod-type=loc,ref=15]
+                (head Prep 5~[{6},ref=16]
+                    (lex aus 6~[stem=from]))
+                (obj NP 2~[{4},ref=17]
+                    (head PropN 3~[{4},ref=4]
+                        (lex Hamburg 4~[stem=Hamburg,case=3,person=3,number=sg,gender=neuter])))))
+      (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=time,ref=23]
+     (head ADV 5~[{6},mod-type=time,ref=23]
+           (lex morgen 6~[stem=tomorrow])))
+     (cmp S 
+            (head V 5~[{6},ref=18]
+                  (lex abreisen 12~[stem=leave,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// beginning of SGF tests
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 56 : Morgen feiert Peter mit Freunden und Peter schläft heute allein
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+     (mod ADVP 5~[{6},mod-type=time,ref=23]
+     (head ADV 5~[{6},mod-type=time,ref=23]
+           (lex Morgen 6~[stem=tomorrow])))
+      (head V 5~[{6},ref=1]
+            (lex feiert 6~[stem=party,tense=present,person=3,number=sg,mode=active]))
+			(subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+     (mod PP 12~[{14},ref=6]
+          (head Prep 5~[{6}]
+              (lex mit 6~[stem=with]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}]
+                  (lex Freunden 4~[stem=friend,case=3,person=3,number=sg,gender=masc])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter schläft heute
+(conj S 7~[subject={10},ref=4,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=3]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex heute 6~[stem=today])))
+    (mod ADVP 5~[{6},mod-type=vmod]
+   (head ADV 5~[{6},mod-type=vmod]
+           (lex allein 6~[stem=alone])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 56a - example 24 in the paper 
+// Metsa läks jahimees ja _s tappis jänese
+// In den Wald ging der Jäger und _s schoss einen Hasen.
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+      (mod PP 12~[{14},ref=11]
+        (head Prep 5~[{6},mod-type=direction,ref=15]
+            (lex In 6~[stem=into]))
+        (obj NP 2~[{4},ref=13]
+             (det DETP  [ref=3]
+                 (head DET [ref=3]
+                     (lex den [stem=the,case=4,person=3,number=sg,gender=neuter])))  
+             (head PropN 3~[{4},ref=13]
+                    (lex Wald 4~[stem=forest,case=4,person=3,number=sg,gender=neuter]))))
+     (head V 5~[{6},ref=20]
+          (lex ging 26~[stem=go,tense=praeteritum,person=3,number=sg,mode=active]))
+     (subj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DET 14~[{15},ref=22]
+            (lex der 15~[stem=the,case=1,person=3,number=sg,gender=masc])))
+         (head N 14~[{15}]
+            (lex Jäger 15~[stem=hunter,case=1,person=3,number=sg,gender=masc]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=4,head={11}]
+     (subj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DET 14~[{15},ref=22]
+            (lex der 15~[stem=the,case=1,person=3,number=sg,gender=masc])))
+         (head N 14~[{15}]
+            (lex Jäger 15~[stem=hunter,case=1,person=3,number=sg,gender=masc])))
+    (head V 5~[{6},ref=49]
+          (lex schoss 26~[stem=shoot,tense=present,person=3,number=sg,mode=active]))
+     (dobj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DET 14~[{15},ref=22]
+            (lex einen 15~[stem=a,case=1,person=3,number=sg,gender=masc])))
+         (head N 14~[{15},ref=22]
+            (lex Hasen 15~[stem=hare,case=4,person=3,number=sg,gender=masc])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 56b - example 26 in the paper 
+// Den Wein trinke ich nicht mehr und den Wein giesse ich weg
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+     (dobj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DemPron 14~[{15},ref=22]
+            (lex Diesen 15~[stem=this,case=4,person=3,number=sg,gender=masc])))
+         (head N 14~[{15}]
+            (lex Wein 15~[stem=wine,case=4,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=20]
+          (lex trinke 26~[stem=drink,tense=present,person=1,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex ich 4~[stem=I,case=1,person=1,number=sg])))
+     (mod ADVP 5~[{6},mod-type=neg,ref=23]
+         (head ADV 5~[{6},mod-type=neg,ref=23]
+           (lex nicht 6~[stem=not]))
+        (mod ADVP 5~[{6},mod-type=grad,ref=25]
+            (head PRT 5~[{6},mod-type=grad,ref=25]
+                (lex mehr 6~[stem=anymore])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=4,head={11}]
+     (dobj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DemPron 14~[{15}]
+            (lex diesen 15~[stem=this,case=4,person=3,number=sg,gender=masc])))
+         (head N 14~[{15},ref=22]
+            (lex Wein 15~[stem=wine,case=4,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=9]
+          (lex giesse 26~[stem=throw,tense=present,person=1,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex ich 4~[stem=I,case=1,person=1,number=sg])))
+     (prt PRTP 5~[{6},ref=29]
+          (head VPRE 5~[{6},ref=29]
+           (lex weg 6~[stem=away])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 56c - example with complement clause first
+// Das Examen bestehen will er und das examen bestehen kann er 
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+     (cmp S 5~[{6},ref=7]
+        (dobj NP 13~[{14},ref=21]
+           (det DETP 5~[{6},ref=23]
+               (head DET 14~[{15},ref=22]
+                  (lex Das 15~[stem=the,case=4,person=3,number=sg,gender=neuter])))
+            (head N 14~[{15}]
+                 (lex Examen 15~[stem=exam,case=4,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=7]
+           (lex bestehen 6~[stem=pass,tense=infinitive,mode=active])))
+      (head V 5~[{6},ref=9]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex er 4~[stem=he,case=1,person=3,gender=masc,number=sg]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// das Examen bestehen kann er
+(conj S 7~[subject={10},ref=4,head={11}]
+     (cmp S 5~[{6},ref=7]
+        (dobj NP 13~[{14},ref=21]
+          (det DETP 5~[{6},ref=23]
+             (head DET 14~[{15},ref=22]
+               (lex das 15~[stem=the,case=4,person=3,number=sg,gender=neuter])))
+          (head N 14~[{15}]
+            (lex Examen 15~[stem=exam,case=4,person=3,number=sg,gender=masc])))
+        (head V 5~[{6},ref=7]
+            (lex bestehen 6~[stem=pass,tense=infinitive,mode=active])))
+      (head V 5~[{6},ref=90]
+            (lex kann 6~[stem=can,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4},ref=2]
+                  (lex er 4~[stem=he,case=1,person=3,gender=masc,number=sg])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 56d - variation of example 25 in the paper
+// Gestern bist du gegangen und gestern hast du nichts gesagt
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Gestern 6~[stem=yesterday])))
+      (head V 5~[{6},ref=9]
+            (lex bist 6~[stem=aux-be,tense=present,person=2,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PersPron 3~[{4},ref=2]
+                  (lex du 4~[stem=you,case=1,person=2,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=17]
+            (head V 5~[{6},ref=7]
+                 (lex gegangen 6~[stem=leave,tense=participle]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex gestern 6~[stem=yesterday])))
+      (head V 5~[{6},ref=90]
+            (lex hast 6~[stem=aux-have,tense=present,person=2,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PersPron 3~[{4},ref=2]
+                  (lex du 4~[stem=you,case=1,person=2,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=70]
+     (dobj NP 13~[{14},ref=21]
+         (head NegPRon 14~[{15}]
+            (lex nichts 15~[stem=nothing,case=4,person=3,number=sg,gender=neuter])))
+            (head V 5~[{6},ref=70]
+                 (lex gesagt 6~[stem=say,tense=participle])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 56e - variant of example 25 in the paper
+// Warum bist du gegangen und warum hast du nichts gesagt
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head WHPron 5~[{6},mod-type=time,ref=22]
+           (lex Warum 6~[stem=why])))
+      (head V 5~[{6},ref=9]
+            (lex bist 6~[stem=aux-be,tense=present,person=2,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PersPron 3~[{4},ref=2]
+                  (lex du 4~[stem=you,case=1,person=2,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=17]
+            (head V 5~[{6},ref=7]
+                 (lex gegangen 6~[stem=leave,tense=participle]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head WHPron 5~[{6},mod-type=time,ref=22]
+           (lex warum 6~[stem=why])))
+      (head V 5~[{6},ref=90]
+            (lex hast 6~[stem=aux-have,tense=present,person=2,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PersPron 3~[{4},ref=2]
+                  (lex du 4~[stem=you,case=1,person=2,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=70]
+     (dobj NP 13~[{14},ref=21]
+         (head NegPRon 14~[{15}]
+            (lex nichts 15~[stem=nothing,case=4,person=3,number=sg,gender=neuter])))
+            (head V 5~[{6},ref=70]
+                 (lex gesagt 6~[stem=say,tense=participle])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 56f - interrogative clause word order eliciting subject-verb-inversion
+// Stehen die Leute immer noch vor dem Haus und rufen Parolen?
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+     (head V 5~[{6},ref=20]
+          (lex Stehen 26~[stem=stand,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DET 14~[{15},ref=22]
+            (lex die 15~[stem=the,case=1,person=3,number=pl,gender=neuter])))
+         (head N 14~[{15}]
+            (lex Leute 15~[stem=people,case=1,person=3,number=pl,gender=neuter])))
+     (mod ADVP 5~[{6},mod-type=time,ref=23]
+        (mod ADVP 5~[{6},mod-type=grad,ref=25]
+            (head PRT 5~[{6},mod-type=grad,ref=25]
+                (lex noch 6~[stem=still-1])))
+         (head ADV 5~[{6},mod-type=neg,ref=23]
+           (lex immer 6~[stem=still-2])))
+      (mod PP 12~[{14},ref=11]
+        (head Prep 5~[{6},mod-type=loc,ref=15]
+            (lex vor 6~[stem=in-front-of]))
+        (obj NP 2~[{4},ref=13]
+             (det DETP  [ref=3]
+                 (head DET [ref=3]
+                     (lex dem [stem=the,case=3,person=3,number=sg,gender=neuter])))  
+             (head PropN 3~[{4},ref=13]
+                    (lex Haus 4~[stem=house,case=3,person=3,number=sg,gender=neuter])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// rufen die Leute immer noch Parolen
+(conj S 7~[subject={10},ref=4,head={11}]
+    (head V 5~[{6},ref=40]
+          (lex rufen 26~[stem=shout,tense=present,person=3,number=sg,mode=active]))
+     (subj NP 13~[{14},ref=21]
+      (det DETP 5~[{6},ref=23]
+         (head DET 14~[{15},ref=22]
+            (lex die 15~[stem=the,case=1,person=3,number=pl,gender=neuter])))
+         (head N 14~[{15}]
+            (lex Leute 15~[stem=people,case=1,person=3,number=pl,gender=fem])))
+     (dobj NP 13~[{14},ref=21]
+         (head N 14~[{15},ref=22]
+            (lex Parolen 15~[stem=slogan,case=4,person=3,number=pl,gender=fem])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 56g - example 25 in the paper
+// Gestern bist du gegangen und gestern hast du mich nicht gewarnt
+// Eile oled sa läinud ja _f ei ole _s midagi öelnud?
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Gestern 6~[stem=yesterday])))
+      (head V 5~[{6},ref=9]
+            (lex bist 6~[stem=aux-be,tense=present,person=2,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PersPron 3~[{4},ref=2]
+                  (lex du 4~[stem=you,case=1,person=2,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=17]
+            (head V 5~[{6},ref=7]
+                 (lex gegangen 6~[stem=leave,tense=participle]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=19]
+    (mod ADVP 5~[{6},mod-type=time,ref=22]
+    (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex gestern 6~[stem=yesterday])))
+      (head V 5~[{6},ref=90]
+            (lex hast 6~[stem=aux-have,tense=present,person=2,number=sg,mode=active]))
+      (subj NP 2~[{4},ref=2]
+            (head PersPron 3~[{4},ref=2]
+                  (lex du 4~[stem=you,case=1,person=2,number=sg,gender=masc])))
+     (cmp S 5~[{6},ref=70]
+        (dobj NP 2~[{4},ref=13]
+             (head PersPron 3~[{4},ref=13]
+                    (lex mich 4~[stem=me,case=4,person=3,number=sg])))
+         (mod ADVP 5~[{6},mod-type=neg,ref=23]
+           (head NegPRon 14~[{15}]
+              (lex nicht 15~[stem=not])))
+         (head V 5~[{6},ref=70]
+             (lex gewarnt 6~[stem=warn,tense=participle])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Morgen feiert Peter mit Freunden und morgen schläft Peter allein
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Morgen 6~[stem=tomorrow])))
+      (head V 5~[{6},ref=1]
+            (lex feiert 6~[stem=party,tense=present,person=3,number=sg,mode=active]))
+	(subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+     (mod PP 12~[{14},ref=6]
+          (head Prep 5~[{6}]
+              (lex mit 6~[stem=with]))
+          (obj NP 2~[{4}]
+            (head N 3~[{4}]
+                  (lex Freunden 4~[stem=friend,case=3,person=3,number=sg,gender=masc])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// morgen schläft Peter 
+(conj S 7~[subject={10},ref=4,head={11}]
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex morgen 6~[stem=tomorrow])))
+      (head V 11~[{12},ref=3]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+    (mod ADVP 5~[{6},mod-type=vmod,ref=23]
+   (head ADV 5~[{6},mod-type=vmod,ref=23]
+           (lex allein 6~[stem=alone])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Morgen feiert Peter mit Freunden und Peter schläft heute ohne Freunde
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+     (mod ADVP 5~[{6},mod-type=time,ref=22]
+     (head ADV 5~[{6},mod-type=time,ref=22]
+           (lex Morgen 6~[stem=tomorrow])))
+      (head V 5~[{6},ref=1]
+            (lex feiert 6~[stem=party,tense=present,person=3,number=sg,mode=active]))
+			(subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Peter 4~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+     (mod PP 12~[{14},ref=6]
+          (head Prep 5~[{6},ref=11]
+              (lex mit 6~[stem=with]))
+          (obj NP 2~[{4},ref=13]
+            (head N 3~[{4},ref=13]
+                  (lex Freunden 4~[stem=friend,case=3,person=3,number=sg,gender=masc])))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter schläft heute
+(conj S 7~[subject={10},ref=4,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Peter 10~[stem=Peter,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=3]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active]))
+     (mod ADVP 5~[{6},mod-type=time,ref=24]
+     (head ADV 5~[{6},mod-type=time,ref=24]
+           (lex heute 6~[stem=today])))
+     (mod PP 12~[{14},ref=8]
+          (head Prep 5~[{6}]
+              (lex ohne 6~[stem=without,ref=12]))
+          (obj NP 2~[{4},ref=13]
+            (head N 3~[{4},ref=13]
+                  (lex Freunde 4~[stem=friend,case=4,person=3,number=sg,gender=masc]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 58 
+// Die Suppe isst Hans und Hans legt sich hin
+// becomes:  Suppi sööb Hans_1 ja Hans-s_1 heidab pikali 
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+      (dobj NP 2~[{4},ref=15]
+           (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Die [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=13]
+                  (lex Suppe 4~[stem=soup,case=accusative,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=1]
+            (lex ißt 6~[stem=eat,tense=present,person=3,number=sg,mode=active]))
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=nominative,person=3,number=sg,gender=masc]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=4,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,case=nominative,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=41]
+            (lex legt 6~[stem=lay,tense=present,person=3,number=sg,mode=active]))
+        (dobj NP 2~[{4},ref=23]
+            (head REFLP [ref=25]
+               (lex sich [stem=himself,case=accusative,person=3,number=sg,gender=masc])))
+       (prt PRTP 5~[{6},ref=29]
+          (head VPRE 5~[{6},ref=29]
+           (lex hin 6~[stem=down])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 58a : Die Suppe möchte Hans essen und Hans möchte sich hinlegen
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+      (dobj NP 2~[{4},ref=15,lin=1]
+           (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Die [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=13]
+                  (lex Suppe 4~[stem=soup,case=4,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (cmp S  [ref=5,dom=1]
+            (head V 5~[{6},ref=5]
+                 (lex essen 6~[stem=eat,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=4,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S  [ref=7]
+         (dobj NP 2~[{4},ref=23]
+                (head REFLP [ref=25]
+                  (lex sich [stem=himself,case=4,person=3,number=sg,gender=masc])))
+             (head V 5~[{6},ref=45]
+                 (lex hinlegen 6~[stem=lay-down,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 58b : Die Suppe möchte Hans essen und sich  möchte Hans hinlegen
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+      (dobj NP 2~[{4},ref=15,lin=1]
+           (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Die [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=13]
+                  (lex Suppe 4~[stem=soup,case=4,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (cmp S  [ref=5,dom=1]
+            (head V 5~[{6},ref=5]
+                 (lex essen 6~[stem=eat,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=4,head={11}]
+         (dobj NP 2~[{4},ref=23,lin=2]
+                (head REFLP [ref=25]
+                  (lex sich [stem=himself,case=4,person=3,number=sg,gender=masc])))
+       (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+     (cmp S  [ref=7,dom=2]
+             (head V 5~[{6},ref=45]
+                 (lex hinlegen 6~[stem=lay-down,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 59 : Die Suppe möchte Hans zu essen versuchen und Hans möchte sich hinzulegen versuchen
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+          (dobj NP 2~[{4},ref=15,lin=1]
+           (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Die [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=13]
+                  (lex Suppe 4~[stem=soup,case=4,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+     (cmp S [ref=33] 
+          (cmp S 1~[subject={2},head={5},ref=33,dom=1]
+            (pinfin PP 5~[{6},ref=13]
+               (head Prep 5~[{6},ref=13]
+                  (lex zu 6~[stem=to])))
+            (head V 5~[{6},ref=5]
+                 (lex essen 6~[stem=eat,tense=infinitive,mode=active])))
+          (head V 5~[{6},ref=9]
+            (lex versuchen 26~[stem=try,mode=infinitive]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Peter schläft heute
+(conj S 7~[subject={10},ref=4,head={11}]
+      (subj NP 8~[{10},ref=2]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+           (head V 5~[{6},ref=1]
+                (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+    (cmp S [ref=53] 
+         (cmp S 1~[subject={2},head={5},ref=13]
+           (dobj NP 2~[{4},ref=23]
+               (head REFLP [ref=25]
+                   (lex sich [stem=himself,case=4,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=45]
+                 (lex hinzulegen 6~[stem=lay-down,tense=infinitive,mode=active])))
+           (head V 5~[{6},ref=9]
+               (lex versuchen 26~[stem=try,mode=infinitive])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 60 : Die Suppe möchte Hans zu essen versuchen und das Bier zu trinken versuchen
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+          (dobj NP 2~[{4},ref=15,lin=1]
+           (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Die [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=13]
+                  (lex Suppe 4~[stem=soup,case=4,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (cmp S 1~[subject={2},head={5},ref=23]
+        (cmp S 1~[subject={2},head={5},ref=13,dom=1]
+           (pinfin PP 5~[{6},ref=13]
+             (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+            (head V 5~[{6},ref=5]
+                 (lex essen 6~[stem=eat,tense=infinitive,mode=active])))
+         (head V 5~[{6},ref=9]
+            (lex versuchen 26~[stem=try,mode=infinitive]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=73]
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+           (cmp S 1~[subject={2},head={5},ref=63]
+           (cmp S 1~[subject={2},head={5},ref=53]
+        (dobj NP 2~[{4},ref=95]
+           (det DETP  [ref=83]
+               (head DET  [ref=83]
+                  (lex das [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=93]
+                  (lex Bier 4~[stem=beer,case=4,person=3,number=sg,gender=neuter])))
+        (pinfin PP 5~[{6},ref=13]
+          (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+            (head V 5~[{6},ref=55]
+                 (lex trinken 6~[stem=drink,tense=infinitive,mode=active])))
+          (head V 5~[{6},ref=9]
+            (lex versuchen 26~[stem=try,mode=infinitive])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 60a - scrambling :
+//  Die Suppe möchte Hans zu essen versuchen und das Bier versuchen zu trinken 
+(expr S 
+  (conj S 1~[subject={2},head={5},ref=3]
+          (dobj NP 2~[{4},ref=15,lin=1]
+           (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Die [stem=the,case=1,person=3,number=sg,gender=masc])))
+           (head N 3~[{4},ref=13]
+                  (lex Suppe 4~[stem=soup,case=4,person=3,number=sg,gender=fem])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (cmp S 1~[subject={2},head={5},ref=23]
+        (cmp S 1~[subject={2},head={5},ref=13,dom=1]
+           (pinfin PP 5~[{6},ref=13]
+             (head Prep 5~[{6},ref=13]
+              (lex zu 6~[stem=to])))
+            (head V 5~[{6},ref=5]
+                 (lex essen 6~[stem=eat,tense=infinitive,mode=active])))
+         (head V 5~[{6},ref=9]
+            (lex versuchen 26~[stem=try,mode=infinitive]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+   (conj S 1~[subject={2},head={5},ref=73]
+       (subj NP 2~[{4},ref=2]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=1]
+            (lex möchte 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=63]
+          (dobj NP 2~[{4},ref=95,lin=2]
+             (det DETP  [ref=83]
+                 (head DET  [ref=83]
+                    (lex das [stem=the,case=1,person=3,number=sg,gender=masc])))
+              (head N 3~[{4},ref=93]
+                  (lex Bier 4~[stem=beer,case=4,person=3,number=sg,gender=neuter])))
+          (head V 5~[{6},ref=9]
+            (lex versuchen 26~[stem=try,mode=infinitive]))
+       (cmp S 1~[subject={2},head={5},ref=53,dom=2]
+          (pinfin PP 5~[{6},ref=13]
+             (head Prep 5~[{6},ref=13]
+                 (lex zu 6~[stem=to])))
+           (head V 5~[{6},ref=55]
+                 (lex trinken 6~[stem=drink,tense=infinitive,mode=active]))))))
+///////////////////////////////////////////////////////////////////////////////////
+////////////////////////    n-partite and non S-coord     /////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 61 : Caesar kam und Caesar sah und Caesar siegte
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=29]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6}]
+            (lex kam 6~[stem=come,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6}]
+            (lex sah 6~[stem=see,tense=past,person=3,number=sg,mode=active])))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Caesar 10~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12}]
+             (lex siegte 12~[stem=win,tense=past,person=3,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 62 : Caesar kam und Caesar sah und Caesar kämpfte und Caesar siegte
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=29]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=51]
+            (lex kam 6~[stem=come,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 1~[subject={2},head={5},ref=28]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=52]
+            (lex sah 6~[stem=see,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 1~[subject={2},head={5},ref=27]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=53]
+            (lex kämpfte 6~[stem=figth,tense=past,person=3,number=sg,mode=active])))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Caesar 10~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=54]
+             (lex siegte 12~[stem=win,tense=past,person=3,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 63 : Caesar kam und Caesar sah und Caesar kämpfte und Caesar verlor und Caesar verschwand
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=51]
+            (lex kam 6~[stem=come,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=52]
+            (lex sah 6~[stem=see,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=53]
+            (lex kämpfte 6~[stem=fight,tense=past,person=3,number=sg,mode=active])))
+ (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=54]
+            (lex verlor 6~[stem=lose,tense=past,person=3,number=sg,mode=active])))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Caesar 10~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=55]
+             (lex verschwand 12~[stem=disappear,tense=past,person=3,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 64 : Caesar kam und Titus sah und Titus siegte
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11]
+            (lex kam 6~[stem=come,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+    (conj S 
+           (subj NP 2~[{4},ref=21]
+               (head PropN 3~[{4}]
+                  (lex Titus 4~[stem=Titus,case=1,person=3,number=sg,gender=masc])))
+            (head V 5~[{6},ref=12]
+                (lex sah 6~[stem=see,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+      (lex und 12~[stem=and]))
+      (conj S 7~[subject={10},ref=3,head={11}]
+             (subj NP 8~[{10},ref=21]
+                (head PropN 9~[{10}]
+                  (lex Titus 10~[stem=Titus,case=1,person=3,number=sg,gender=masc])))
+              (head V 11~[{12},ref=13]
+                   (lex siegte 12~[stem=win,tense=past,person=3,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 65 : Caesar kam und Titus kam und Titus siegte
+(expr S 
+   (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Caesar 4~[stem=Caesar,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=11]
+            (lex kam 6~[stem=come,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+       (lex und 12~[stem=and]))
+   (conj S 
+            (subj NP 2~[{4},ref=21]
+               (head PropN 3~[{4}]
+                  (lex Titus 4~[stem=Titus,case=1,person=3,number=sg,gender=masc])))
+            (head V 5~[{6},ref=11]
+                 (lex kam 6~[stem=come,tense=past,person=3,number=sg,mode=active])))
+   (coord C 13~[{12}] 
+            (lex und 12~[stem=and]))
+    (conj S 7~[subject={10},ref=3,head={11}]
+             (subj NP 8~[{10},ref=21]
+                (head PropN 9~[{10}]
+                  (lex Titus 10~[stem=Titus,case=1,person=3,number=sg,gender=masc])))
+              (head V 11~[{12}]
+                   (lex siegte 12~[stem=win,tense=past,person=3,number=sg,mode=active]))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Sentence 66 : Hans will schlafen und Hans will träumen und Hans will aufwachen
+(expr S 
+      (conj S 1~[subject={2},head={5},ref=2]
+      (subj NP 2~[{4},ref=1]
+            (head PropN 3~[{4}]
+                  (lex Hans 4~[stem=Hans,ref=11,case=1,person=3,number=sg,gender=masc])))
+      (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 
+            (head V 5~[{6},ref=5]
+                 (lex schlafen 6~[stem=sleep,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans will trauemen
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,ref=11,case=1,person=3,number=sg,gender=masc])))
+     (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 
+            (head V 5~[{6},ref=18]
+                  (lex träumen 12~[stem=dream,tense=infinitive,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+// Hans will aufwachen
+(conj S 7~[subject={10},ref=3,head={11}]
+      (subj NP 8~[{10},ref=1]
+            (head PropN 9~[{10}]
+                  (lex Hans 10~[stem=Hans,ref=11,case=1,person=3,number=sg,gender=masc])))
+     (head V 5~[{6},ref=4]
+            (lex will 6~[stem=want-to,tense=present,person=3,number=sg,mode=active]))
+     (cmp S 
+            (head V 5~[{6},ref=28]
+                  (lex aufwachen 12~[stem=wake-up,tense=infinitive,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+// sentence 67 : der grosse Hans und der kleine Hans schlafen
+(expr S 
+      (subj NP [ref=48]
+         (conj NP [ref=1]
+            (det DETP  [ref=3]
+               (head DET  [ref=3]
+                  (lex Der [stem=the,case=1,person=3,number=sg,gender=masc])))
+              (mod ADJP 12~[{14},mod-type=attr,ref=6]
+                  (head ADJ 5~[{6},ref=13]
+                     (lex kleine 6~[stem=little,case=1,person=3,number=sg,gender=masc])))    
+            (head PropN [ref=8]
+                  (lex Hans [stem=Hans,case=1,person=3,number=sg,gender=masc])))
+         (coord C       
+               (lex und [stem=and]))
+       (conj NP [ref=2]
+            (det DETP  [ref=3]
+               (head DET [ref=3]
+                  (lex der [stem=the,case=1,person=3,number=sg,gender=masc])))
+              (mod ADJP 12~[{14},mod-type=attr,ref=16]
+                  (head ADJ 5~[{6},ref=14]
+                     (lex grosse 6~[stem=big,case=1,person=3,number=sg,gender=masc])))    
+            (head PropN [ref=8]
+                  (lex Hans [stem=Hans,case=1,person=3,number=sg,gender=masc]))))  
+      (head V [ref=3]
+            (lex schlafen [stem=sleep,tense=present,person=3,number=pl,mode=active])))
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+// sentence 68 : Mit Bier und mit Würstchen und mit Kartoffelsalat grillt Hans mit Maria vor dem Haus und neben dem Haus und hinter dem Haus
+(expr S 
+     (mod PP 12~[{14},ref=11]
+       (conj PP [ref=2]
+              (head Prep 5~[{6},mod-type=instr,ref=16]
+                    (lex Mit 6~[stem=with]))
+                (obj NP 2~[{4},ref=13]
+                    (head PropN 3~[{4},ref=13]
+                        (lex Bier 4~[stem=beer,case=3,person=3,number=sg,gender=fem]))))
+       (coord C       
+               (lex und [stem=and]))
+      (conj PP [ref=22]
+              (head Prep 5~[{6},mod-type=instr,ref=16]
+                    (lex mit 6~[stem=with]))
+                (obj NP 2~[{4},ref=23]
+                    (head PropN 3~[{4},ref=23]
+                        (lex Würstchen 4~[stem=hot-dogs,case=3,person=3,number=sg,gender=fem]))))
+        (coord C       
+               (lex und [stem=and]))
+      (conj PP [ref=22]
+              (head Prep 5~[{6},mod-type=instr,ref=16]
+                    (lex mit 6~[stem=with]))
+                (obj NP 2~[{4},ref=33]
+                    (head PropN 3~[{4},ref=33]
+                        (lex Kartoffelsalat 4~[stem=potato-salad,case=3,person=3,number=sg,gender=fem])))))
+      (head V [ref=3]
+            (lex grillt [stem=barbecue,tense=present,person=3,number=sg,mode=active]))
+      (subj NP [ref=1]
+            (head PropN [ref=1]
+                  (lex Hans [stem=Hans,case=1,person=3,number=sg,gender=masc])))
+    (mod PP 12~[{14},ref=15,mod-type=vmod]
+          (head Prep 5~[{6},ref=13]
+              (lex mit 6~[stem=with]))
+          (obj NP 2~[{4}]
+            (head PropN 3~[{4},ref=14]
+                (lex Maria 4~[stem=Maria,case=3,person=3,number=sg,gender=fem]))))
+      (mod PP 12~[{14},ref=11]
+       (conj PP [ref=2]
+              (head Prep 5~[{6},mod-type=loc,ref=15]
+                    (lex vor 6~[stem=in-front-of]))
+                (obj NP 2~[{4},ref=13]
+                  (det DETP  [ref=3]
+                     (head DET [ref=3]
+                        (lex dem [stem=the,case=3,person=3,number=sg,gender=neuter])))  
+                  (head PropN 3~[{4},ref=13]
+                        (lex Haus 4~[stem=house,case=3,person=3,number=sg,gender=neuter]))))
+       (coord C       
+               (lex und [stem=and]))
+       (conj PP [ref=2]
+              (head Prep 5~[{6},mod-type=loc,ref=16]
+                    (lex neben 6~[stem=beside]))
+                (obj NP 2~[{4},ref=13]
+                  (det DETP  [ref=3]
+                     (head DET [ref=3]
+                        (lex dem [stem=the,case=3,person=3,number=sg,gender=neuter])))  
+                  (head PropN 3~[{4},ref=13]
+                        (lex Haus 4~[stem=house,case=3,person=3,number=sg,gender=neuter]))))
+       (coord C       
+               (lex und [stem=and]))
+      (conj PP [ref=32]
+              (head Prep 5~[{6},mod-type=loc,ref=36]
+                    (lex hinter 6~[stem=behind]))
+                (obj NP 2~[{4},ref=13]
+                  (det DETP  [ref=3]
+                     (head DET [ref=3]
+                        (lex dem [stem=the,case=3,person=3,number=sg,gender=neuter])))  
+                  (head PropN 3~[{4},ref=13]
+                        (lex Haus 4~[stem=house,case=3,person=3,number=sg,gender=neuter]))))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+//sentence 13-a: ich hoffe dass Hans schläft und du hoffst dass Hans schläft
+(expr S 
+(conj S 33~[subject={10},ref=19,head={11}]
+      (subj NP 20~[{40},ref=7]
+            (head PersPron 21~[{40},ref=7]
+                  (lex Ich 40~[stem=I,case=1,person=1,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffe 26~[stem=hope,tense=present,person=1,number=sg,mode=active]))
+      (cmp S 1~[subject={2},head={5},ref=31]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+               (subj NP 2~[{4},ref=6]
+                     (head PropN 3~[{4},ref=6]
+                           (lex Hans 4~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+               (head V 5~[{6},ref=11]
+                     (lex schläft 6~[stem=sleep,tense=present,person=3,number=sg,mode=active]))))
+(coord C 13~[{12}] 
+    (lex und 12~[stem=and]))
+(conj S 30~[subject={10},ref=20,head={11}]
+      (subj NP 20~[{40},ref=8]
+            (head PersPron 21~[{40},ref=8]
+                  (lex du 40~[stem=you,case=1,person=2,number=sg])))
+      (head V 5~[{6},ref=9]
+            (lex hoffst 26~[stem=hope,tense=present,person=2,number=sg,mode=active]))
+// Peter schläft
+(cmp S 7~[subject={10},head={11},ref=31]
+               (cmpr sub-conj 42~[{50},ref=99]
+                   (lex dass 50~[stem=that]))
+      (subj NP 8~[{10},ref=6]
+            (head PropN 9~[{10},ref=6]
+                  (lex Hans 10~[stem=Hans,case=1,person=3,number=sg,gender=masc])))
+      (head V 11~[{12},ref=11]
+             (lex schläft 12~[stem=sleep,tense=present,person=3,number=sg,mode=active])))))
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// sentence 44: fuer diff estonian-hungarian valency ...
+// Jan reparierte sein Fahrrad 
+// und Jan putzte sein Fahrrad 
+(expr S 
+          (conj S 33~[subject={10},ref=1,head={11}]
+                     (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=5]
+                         (lex reparierte 6~[stem=repair,tense=past,person=3,number=sg,mode=active]))
+                    (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=neuter]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter]))))
+           (coord C 13~[{12}] 
+             (lex und 12~[stem=and]))
+          (conj S 73~[subject={10},ref=6,head={11}]
+                     (subj NP 2~[{4},ref=4]
+                         (head PropN 3~[{4}]
+                           (lex Jan 4~[stem=Jan,case=nominative,person=3,number=sg,gender=masc])))
+                    (head V 5~[{6},ref=57]
+                         (lex putzte 6~[stem=clean,tense=past,person=3,number=sg,mode=active]))
+                   (dobj NP 13~[{14},ref=6]
+   		          (mod PossPron 5~[{6},mod-type=time,ref=22]
+	                      (lex sein 6~[stem=his,case=4,person=3,number=sg,gender=neuter]))
+                         (head N 14~[{15},ref=6]
+                           (lex Fahrrad 15~[stem=bike,case=accusative,person=3,number=sg,gender=neuter])))))
