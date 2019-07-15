@@ -57,6 +57,10 @@ rect.btn {
     fill: lightblue !important;
 }
 
+div .selected{
+    background-color: lightblue !important;
+}
+
 code {
     width: 100%;
     display: table;

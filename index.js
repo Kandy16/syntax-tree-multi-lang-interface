@@ -2,7 +2,7 @@
 if (window.File && window.FileReader && window.FileList && window.Blob) {
     console.log('my browser has support for HTML5 APIs :-) !!');
     
-    var languages = ['de','ta','en'];
+    var languages = ['de','ta'];
     var jsonConverterSection = document.querySelector('#tojson');
 
     var input = {};
@@ -73,9 +73,10 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     jsonConverterSection.querySelector('.save').onclick = saveToJSON;  
     
     var languageData =  {};
-    var chosenLanguage = 'ta';
+    var chosenLanguage = 'ta'; // TBD would be nice to read from language combobox and set it
     var treegui = undefined;
-    var currentSelected = undefined;
+    var currentSelectedIndex = undefined;
+    var currentSelectedElement = undefined;
     var modifiedHistory = [];
     
     var jsonViewSelectSection = document.querySelector('#view-selectjson');
@@ -123,7 +124,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
     }
     function showGraph(indexes){
-        currentSelected = indexes;
+        currentSelectedIndex = indexes;
         
         var sentenceObj = languageData[indexes[0]];
         var sentenceLangObj = sentenceObj[chosenLanguage];
@@ -136,33 +137,45 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         textAreaList[1].value = ((sentenceObj.comment)? sentenceObj.comment:'Comment missing. Enter!');
         
         jsonDrawSelectSection.querySelector('textarea').value = sentenceLangObj[indexes[1]].comment;
+        
+        highlightSelectedElement();
+    }
+    function highlightSelectedElement(){
+        if(currentSelectedElement){
+            currentSelectedElement.classList.remove('selected');
+        }
+        var items = jsonListSelectSection.querySelectorAll('.list-group-item');
+        currentSelectedElement = items[currentSelectedIndex[0]];
+        //Inititally a label containing meanining and button for each translation
+        currentSelectedElement = currentSelectedElement.children[currentSelectedIndex[1]+1];
+        currentSelectedElement.classList.add('selected');
     }
 
     jsonViewSelectSection.querySelector('.loadjson').addEventListener('change', handleParserFileToViewSelect, false);
     
     function mainMeaningUpdate(){
-        if(languageData && currentSelected){
-            var sentenceObj = languageData[currentSelected[0]];
+        if(languageData && currentSelectedIndex){
+            var sentenceObj = languageData[currentSelectedIndex[0]];
             sentenceObj.meaning = jsonViewSelectSection.querySelectorAll('textarea')[0].value;
         }
     }
     jsonViewSelectSection.querySelector('.main-meaning').onclick = mainMeaningUpdate;
     
     function mainCommentUpdate(){
-        if(languageData && currentSelected ){
-            var sentenceObj = languageData[currentSelected[0]];
+        if(languageData && currentSelectedIndex ){
+            var sentenceObj = languageData[currentSelectedIndex[0]];
             sentenceObj.comment = jsonViewSelectSection.querySelectorAll('textarea')[1].value;
         }
     }
     jsonViewSelectSection.querySelector('.main-comment').onclick = mainCommentUpdate;
     
     function addMainTree(){
-        if(currentSelected){
-            var tempData = JSON.stringify(languageData[currentSelected[0]]);
-            languageData.splice(currentSelected[0], 0, JSON.parse(tempData));
+        if(currentSelectedIndex){
+            var tempData = JSON.stringify(languageData[currentSelectedIndex[0]]);
+            languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
             
             buildList(languageData, chosenLanguage);
-            showGraph(currentSelected);
+            showGraph(currentSelectedIndex);
         } else{
             console.log('Choose a node first!');
         }
@@ -170,22 +183,43 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     jsonViewSelectSection.querySelector('.add').onclick = addMainTree;
     
     function deleteMainTree(){
-        if(currentSelected){
-            languageData.splice(currentSelected[0], 1);
+        if(currentSelectedIndex){
+            languageData.splice(currentSelectedIndex[0], 1);
+            currentSelectedIndex[1] = 0;
+            if(languageData.length <= currentSelectedIndex[0]){
+                currentSelectedIndex[0] = languageData.length - 1;
+            }
             
             buildList(languageData, chosenLanguage);
-            showGraph(currentSelected);
+            showGraph(currentSelectedIndex);
         } else{
             console.log('Choose a node first!');
         }
     }
     jsonViewSelectSection.querySelector('.delete').onclick = deleteMainTree;
     
+    jsonViewSelectSection.querySelector('.viewlang').innerHTML = languagesSelectionElement;
+    function handleLanguageChangeForView(evt){
+        chosenLanguage = jsonViewSelectSection.querySelector('.viewlang').value;
+        if(currentSelectedIndex){
+            currentSelectedIndex[1] = 0;
+            if(languageData.length < currentSelectedIndex[0]){
+                currentSelectedIndex[0] = languageData.length-1;
+            }
+        } else{
+            currentSelectedIndex = [0,0];
+        }
+        
+        buildList(languageData, chosenLanguage);
+        showGraph(currentSelectedIndex);
+    }
+    jsonViewSelectSection.querySelector('.viewlang').onchange = handleLanguageChangeForView;
+    
     function treeCommentUpdate(){
-        if(languageData && currentSelected ){
-            var sentenceObj = languageData[currentSelected[0]];
+        if(languageData && currentSelectedIndex ){
+            var sentenceObj = languageData[currentSelectedIndex[0]];
             var sentenceLangObj = sentenceObj[chosenLanguage];
-            var treeObj = sentenceLangObj[currentSelected[1]];
+            var treeObj = sentenceLangObj[currentSelectedIndex[1]];
             treeObj.comment = jsonDrawSelectSection.querySelector('textarea').value;
         }
     }
@@ -213,16 +247,16 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     jsonViewSelectSection.querySelector('.savejson').onclick = saveParser;
     
     function addTranslationTree(){
-        if(currentSelected){
-            var sentenceObj = languageData[currentSelected[0]];
+        if(currentSelectedIndex){
+            var sentenceObj = languageData[currentSelectedIndex[0]];
             var sentenceLangObj = sentenceObj[chosenLanguage];
-            var treeObj = sentenceLangObj[currentSelected[1]];
+            var treeObj = sentenceLangObj[currentSelectedIndex[1]];
             
             var tempData = JSON.stringify(treeObj);
-            sentenceLangObj.splice(currentSelected[1], 0, JSON.parse(tempData));
+            sentenceLangObj.splice(currentSelectedIndex[1], 0, JSON.parse(tempData));
             
             buildList(languageData, chosenLanguage);
-            showGraph(currentSelected);
+            showGraph(currentSelectedIndex);
         } else{
             console.log('Choose a node first!');
         }
@@ -230,19 +264,23 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     jsonDrawSelectSection.querySelector('.add').onclick = addTranslationTree;
     
     function deleteTranslationTree(){
-        if(currentSelected){
-            var sentenceObj = languageData[currentSelected[0]];
+        if(currentSelectedIndex){
+            var sentenceObj = languageData[currentSelectedIndex[0]];
             var sentenceLangObj = sentenceObj[chosenLanguage];
             
             if(sentenceLangObj.length > 1){
-                sentenceLangObj.splice(currentSelected[1], 1);
+                sentenceLangObj.splice(currentSelectedIndex[1], 1);
             
+                if(sentenceLangObj.length <= currentSelectedIndex[1]){
+                    currentSelectedIndex[1] = sentenceLangObj.length - 1;
+                }
+                
                 buildList(languageData, chosenLanguage);
-                showGraph(currentSelected);
+                showGraph(currentSelectedIndex);
+                
             } else{
                 console.log('Only one translate tree available !!')
             }
-            
             
         } else{
             console.log('Choose a node first!');
