@@ -78,10 +78,7 @@ class parserfiletojson{
             if(languageFound){
                 var sentenceList = [];
                 try{
-                    if(i == 98){
-                        console.log('may be error');
-                    }
-                    getSentence(inputLangData[0].tree, sentenceList);        
+                    getSentence(inputLangData[0].tree[0], sentenceList);        
                 }
                 catch(err){
                     console.log(inputLangData);

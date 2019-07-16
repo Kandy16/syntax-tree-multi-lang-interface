@@ -3,7 +3,9 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     console.log('my browser has support for HTML5 APIs :-) !!');
     
     var languages = ['de','ta'];
+    var chooseFileSection = document.querySelector('#choosefile');
     var jsonConverterSection = document.querySelector('#tojson');
+    var textConverterSection = document.querySelector('#totext');
 
     var input = {};
     function handleParseFileSelect(evt){
@@ -14,17 +16,17 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             input.parser = {};
             input.parser.content = event.target.result;
             input.parser.language = languages[0];
-            jsonConverterSection.querySelector('.display').innerHTML = 'Parser File read succcessfully';
+            chooseFileSection.querySelector('.display').innerHTML = 'Parser File read succcessfully';
         }
         reader.readAsText(files[0],'utf-8');
     }   
-    jsonConverterSection.querySelector('.loadfile').addEventListener('change', handleParseFileSelect, false);
+    chooseFileSection.querySelector('.loadfile').addEventListener('change', handleParseFileSelect, false);
     
     var languagesSelectionElement = '';
     for(let i in languages){
         languagesSelectionElement += '<option selected>'+languages[i]+'</option>';
     }
-    jsonConverterSection.querySelector('.loadlang').innerHTML = languagesSelectionElement;
+    chooseFileSection.querySelector('.loadlang').innerHTML = languagesSelectionElement;
     
     function handleTranslateFileSelect(evt){
         var files = evt.target.files; // FileList object
@@ -34,19 +36,19 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             input.translation = {};
             input.translation.content = event.target.result;
             input.translation.languages = languages;
-            jsonConverterSection.querySelector('.display').innerHTML = 'Translation File read succcessfully';
+            chooseFileSection.querySelector('.display').innerHTML = 'Translation File read succcessfully';
         }
         reader.readAsText(files[0],'utf-8');
     }   
-    jsonConverterSection.querySelector('.translatefile').addEventListener('change', handleTranslateFileSelect, false); 
-    jsonConverterSection.querySelector('.translatelang').innerHTML = languagesSelectionElement;
+    chooseFileSection.querySelector('.translatefile').addEventListener('change', handleTranslateFileSelect, false); 
+    chooseFileSection.querySelector('.translatelang').innerHTML = languagesSelectionElement;
     
     function saveToJSON(e){
         e.preventDefault();
         
-        input.parser.language = jsonConverterSection.querySelector('.loadlang').value;
+        input.parser.language = chooseFileSection.querySelector('.loadlang').value;
         input.translation.languages = [];
-        let selectedOptions = jsonConverterSection.querySelector('.translatelang').selectedOptions;
+        let selectedOptions = chooseFileSection.querySelector('.translatelang').selectedOptions;
         for(let i in selectedOptions){
             if(!isNaN(i)){ //some properties are not numeric
                 input.translation.languages.push(selectedOptions[i].value);
@@ -71,6 +73,31 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         
     }
     jsonConverterSection.querySelector('.save').onclick = saveToJSON;  
+    
+    function saveToText(e){
+        e.preventDefault();
+        
+        var jsonText = input.parser.content;
+        var selectedLang = chooseFileSection.querySelector('.loadlang').value;
+        
+        var jsonObj = JSON.parse(jsonText);
+        
+        let toText = new jsontofileparser(jsonObj, selectedLang);
+        let saveData = toText.convert();
+        
+        var blob = new Blob([saveData], {
+        "type": "text/plain"
+        });
+
+        var a = document.createElement("a");
+        a.download = name;
+        a.href = URL.createObjectURL(blob);
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        textConverterSection.querySelector('.display').innerHTML = 'Saved to Text succcessfully';        
+    }
+    textConverterSection.querySelector('.save').onclick = saveToText;  
     
     var languageData =  {};
     var chosenLanguage = 'ta'; // TBD would be nice to read from language combobox and set it
@@ -113,6 +140,10 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             
             for(var j in sentenceLangObj){
                 sentenceText += '<button onclick=showGraph('+'['+i+','+j+']'+')>'+sentenceLangObj[j].comment+'</button>';
+                
+                if(!Array.isArray(sentenceLangObj[j].tree)){
+                    sentenceLangObj[j].tree = [sentenceLangObj[j].tree];
+                }
             }
             sentenceText += '</div>';
         }

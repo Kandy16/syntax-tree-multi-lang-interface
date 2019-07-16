@@ -9,7 +9,7 @@
 <body>
     <div class='container-fluid'>
         <div class='row'>
-            <div id = 'tojson' class='col-xs-12'>
+            <div id = 'choosefile' class='col-xs-12'>
                 <label>Choose a language file: </label>
                 <input type='file' class='loadfile' value='load input'>
                 <label>Choose the language of file: </label>
@@ -17,7 +17,16 @@
                 <label>Choose the languages for translation: </label>
                 <select class='translatelang' multiple=true></select>
                 <input type='file' class='translatefile' value='load translate'>
+                <label class="display">Action status will be displayed !!!</label>
+            </div>
+        </div>
+        <div class='row'>
+            <div id = 'tojson' class='col-xs-6'>
                 <input type='button' class='save' value='convert to JSON'>
+                <label class="display">Action status will be displayed !!!</label>
+            </div>
+            <div id = 'totext' class='col-xs-6'>
+                <input type='button' class='save' value='convert to Text'>
                 <label class="display">Action status will be displayed !!!</label>
             </div>
         </div>
@@ -62,5 +71,6 @@
 <script type="text/javascript" src="../parse-tree-gui-tool/tree-group.js"></script>
 <script type="text/javascript" src="../parse-tree-gui-tool/tree-gui.js"></script>
 <script type="text/javascript" src="converters/parserfiletojson.js"></script>
+    <script type="text/javascript" src="converters/jsontoparserfile.js"></script>
 <script type='text/javascript' src='index.js'></script>
 </html>
