@@ -1,0 +1,25 @@
+{
+  "name": "syntax-tree-multi-lang-interface",
+  "version": "1.0.0",
+  "description": "An interface for viewing and manipulatinig parser trees belonging to different languages. Much used for translation purposes",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kandy16/syntax-tree-multi-lang-interface.git"
+  },
+  "author": "Kandhasamy Rajasekaran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kandy16/syntax-tree-multi-lang-interface/issues"
+  },
+  "homepage": "https://github.com/Kandy16/syntax-tree-multi-lang-interface#readme",
+  "dependencies": {
+    "parse-tree-gui-tool": "^1.0.0"
+  }
+}
