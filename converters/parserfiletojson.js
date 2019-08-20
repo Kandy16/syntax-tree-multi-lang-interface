@@ -72,25 +72,28 @@ class parserfiletojson{
                 item[this.input.translation.languages[j]] = JSON.parse(textData);
             }
             
+            var sentenceList = [];
+            try{
+                getSentence(inputLangData[0].tree[0], sentenceList);        
+            }
+            catch(err){
+                console.log(inputLangData);
+                console.log(i);
+            }
+
+            var sentence = sentenceList.join(' ').trim();
+            item.meaning = sentence;
+            item.comment = sentence;
+            
             // if the language is found in translated document
             // compare the sentence and if found update their comments
             
             if(languageFound){
-                var sentenceList = [];
-                try{
-                    getSentence(inputLangData[0].tree[0], sentenceList);        
-                }
-                catch(err){
-                    console.log(inputLangData);
-                    console.log(i);
-                }
-                
-                var sentence = sentenceList.join(' ').trim();
-                
+            
                 var matchIndex = translationContent[this.input.parser.language].indexOf(sentence);
                 if(matchIndex != -1){
-                    item.meaning = translationContent['en'][matchIndex];
-                    item.comment = translationContent['en'][matchIndex];
+                    item.meaning = translationContent['meaning'][matchIndex];
+                    item.comment = translationContent['meaning'][matchIndex];
                     
                     for (let j in this.input.translation.languages){
                         if(Object.keys(translationContent).includes(this.input.translation.languages[j])){

@@ -11,7 +11,7 @@ text {
     font-size: 14px;
 }
 
-#draw-selectjson textarea {
+#graph textarea {
     width: 100%;
     height: auto;
     margin: 0;
@@ -19,9 +19,9 @@ text {
     border: 1px solid #ccc;
 }
 
-.list-group {
-    max-width: 300px;
-    height:calc(100vh - 100px);
+.translation-list {
+    max-width: 450px;
+    height:calc(100vh - 10px);
     overflow-y: scroll;
 }
 
@@ -84,4 +84,8 @@ code.error {
     resize: vertical;
     overflow: auto;
     background: #fff;
+}
+
+.nav-tabs>li>a {
+   margin-right: 25px;
 }
