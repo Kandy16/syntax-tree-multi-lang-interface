@@ -19,25 +19,23 @@
         <div class="tab-content">
             <div id="converters" class="tab-pane fade" role="tabpanel">
                 <div class='row'>
-                    <div id = 'choosefile' class='col-xs-12'>
-                        <label>Choose a language file: </label>
+                    <div id = 'tojson' class='col-xs-12'>
+                        <label>Choose a parser text: </label>
                         <input type='file' class='loadfile' value='load input'>
-                        <label>Choose the language of file: </label>
+                        <label>Choose the language: </label>
                         <select class='loadlang'></select>
                         <label>Choose the languages for translation: </label>
                         <select class='translatelang' multiple=true></select>
-                        <input type='file' class='translatefile' value='load translate'>
-                        <label class="display">Action status will be displayed !!!</label>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div id = 'tojson' class='col-xs-6'>
-                        <input type='button' class='save' value='convert to JSON'>
+                        <input type='button' class='save' value='convert to JSON'>                        
                         <label class="display">Action status will be displayed !!!</label>
                     </div>
                 </div>
                 <div class='row'>
                     <div id = 'totext' class='col-xs-6'>
+                        <label>Choose a JSON: </label>
+                        <input type='file' class='loadfile' value='load'>
+                        <label>Choose the language: </label>
+                        <select class='loadlang'></select>
                         <input type='button' class='save' value='convert to Text'>
                         <label class="display">Action status will be displayed !!!</label>
                     </div>
@@ -53,26 +51,26 @@
                         <label>Change Language: </label>
                         <select class='lang-view'></select>
                         <label>Add Language: </label>
-                        <textarea></textarea>
-                        <input type="button" class='lang-add' value='Add'>
+                        <textarea rows="1"></textarea>
+                        <input type="image" class = "lang-add" src="lib/open-iconic-master/png/plus-4x.png">
                     </div>
                 </div>
                 <div class='row' id='sentence-meaning'>
-                    <div class='col-xs-4'>
+                    <div class='col-xs-6'>
+                    <input type="image" class = "add" src="lib/open-iconic-master/png/plus-8x.png">
+                    <input type="image" class = "copy" src="lib/open-iconic-master/png/fork-8x.png">
+                    <input type="image" class = "delete" src="lib/open-iconic-master/png/x-8x.png">              
+                    </div>
+                    <div class='col-xs-3'>
                         <label class="sentence-no"></label>
                         <label>Meaning: </label>
-                        <textarea></textarea>
-                        <input type="button" class='text-update' value='update'>
+                        <textarea rows="1"></textarea>
+                        <input type="image" class = "text-update" src="lib/open-iconic-master/png/check-4x.png">                        
                     </div>
-                    <div class='col-xs-4'>
+                    <div class='col-xs-3'>
                         <label>Comment: </label>
-                        <textarea></textarea>
-                        <input type="button" class='comment-update' value='update'>
-                    </div>
- 
-                    <div class='col-xs-4'>
-                        <input type="button" class='add' value='Add Sentence'>
-                        <input type="button" class='delete' value='Delete Sentence'>
+                        <textarea rows="1"></textarea>
+                        <input type="image" class = "comment-update" src="lib/open-iconic-master/png/check-4x.png">                    
                     </div>
                 </div>
                 <div class='row' id='translation-view'>
@@ -80,12 +78,10 @@
                         <div class='translation-list'></div>
                     </div>
                     <div class='translation-draw' class='col-xs-10'>
-                        <input type="button" class='add' value='Add Translation'>
-                        <input type="button" class='delete' value='Delete Translation'>
                         <label>Comment: </label>
-                        <textarea></textarea>
-                        <input type="button" class='comment-update' value='update'>
-                        <div id='graph'></div>
+                        <textarea rows="1"></textarea>
+                        <input type="image" class = "comment-update" src="lib/open-iconic-master/png/check-4x.png">   
+                        <div id='graph'></div>                        
                     </div>
                 </div>
             </div>

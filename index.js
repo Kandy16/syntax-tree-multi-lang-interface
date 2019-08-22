@@ -5,7 +5,6 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     ///////////////////// Converter Section //////////////////////////
     
     var languages = ['de','ta','en']; // If more languages are required then add by hand
-    var chooseFileSection = document.querySelector('#choosefile');
     var jsonConverterSection = document.querySelector('#tojson');
     var textConverterSection = document.querySelector('#totext');
     var mergeSection = document.querySelector('#merge_json');
@@ -25,11 +24,28 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             input.translation = {};
             input.translation.languages = languages;
             
-            chooseFileSection.querySelector('.display').innerHTML = 'Parser File read succcessfully';
+            jsonConverterSection.querySelector('.display').innerHTML = 'Parser File read succcessfully';
         }
         reader.readAsText(files[0],'utf-8');
     }   
-    chooseFileSection.querySelector('.loadfile').addEventListener('change', handleParseFileSelect, false);
+    jsonConverterSection.querySelector('.loadfile').addEventListener('change', handleParseFileSelect, false);
+    
+    var inputJSON = {};
+    // Input JSON which needs to be converted to parser tree
+    function handleJSONSelect(evt){
+        var files = evt.target.files; // FileList object
+        console.log(files);
+        var reader = new FileReader();
+        reader.onload = function(event){
+            inputJSON.parser = {};
+            inputJSON.parser.content = event.target.result;
+            inputJSON.parser.language = languages[0];
+                
+            textConverterSection.querySelector('.display').innerHTML = 'JSON read succcessfully';
+        }
+        reader.readAsText(files[0],'utf-8');
+    }   
+    textConverterSection.querySelector('.loadfile').addEventListener('change', handleJSONSelect, false);
     
     // Prepare the list box with languages
     function addOptionsForLanguage(inputLanguages, selectedLang){
@@ -47,8 +63,9 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         }
         return languagesSelectionElement;
     }
-    chooseFileSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
-    
+    jsonConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
+    textConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
+
     // This is optional. By default all languages are chosen. This translation file contains all the 
     // translated text in tabular format /CSV or TSV
     function handleTranslateFileSelect(evt){
@@ -59,19 +76,18 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             input.translation = {};
             input.translation.content = event.target.result;
             input.translation.languages = languages;
-            chooseFileSection.querySelector('.display').innerHTML = 'Translation File read succcessfully';
+            jsonConverterSection.querySelector('.display').innerHTML = 'Translation File read succcessfully';
         }
         reader.readAsText(files[0],'utf-8');
     }   
-    chooseFileSection.querySelector('.translatefile').addEventListener('change', handleTranslateFileSelect, false); 
-    chooseFileSection.querySelector('.translatelang').innerHTML = addOptionsForLanguage(languages);
-    
+    jsonConverterSection.querySelector('.translatelang').innerHTML = addOptionsForLanguage(languages);
+
     function saveToJSON(e){
         e.preventDefault();
         
-        input.parser.language = chooseFileSection.querySelector('.loadlang').value;
+        input.parser.language = jsonConverterSection.querySelector('.loadlang').value;
         input.translation.languages = [];
-        let selectedOptions = chooseFileSection.querySelector('.translatelang').selectedOptions;
+        let selectedOptions = jsonConverterSection.querySelector('.translatelang').selectedOptions;
         for(let i in selectedOptions){
             if(!isNaN(i)){ //some properties are not numeric
                 input.translation.languages.push(selectedOptions[i].value);
@@ -100,8 +116,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     function saveToText(e){
         e.preventDefault();
         
-        var jsonText = input.parser.content;
-        var selectedLang = chooseFileSection.querySelector('.loadlang').value;
+        var jsonText = inputJSON.parser.content;
+        var selectedLang = textConverterSection.querySelector('.loadlang').value;
         
         var jsonObj = JSON.parse(jsonText);
         
@@ -136,8 +152,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var currentSelectedElement = undefined;
     
     //the example tree content which is used whenever new instance is created
-    var exampleMainContent = {"meaning":"I sleep","comment":"I sleep"};
-    var exampleLangContent = {"gloss":[],"comment":"Ich schlafe","tree":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"1"},"children":[{"label":"Ich","edge":"lex","properties":{"stem":"I","case":"1","person":"1","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schlafe","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"1","number":"sg","mode":"active"}}]}]}]};
+    var exampleMainContent = {"meaning":"Add your meaning here!!!","comment":""};
+    var exampleLangContent = {"gloss":[],"comment":"","tree":[{"label":"S","edge":"conj","children":[]}]};
     
     var jsonViewSelectSection = document.querySelector('#data-handle');
     var sentenceMeaningSection = document.querySelector('#sentence-meaning');
@@ -196,19 +212,23 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                 tempIndex = 0;
             }
             sentenceText += '<label onclick=showGraph('+'['+i+','+tempIndex+']'+')>'+sentence+'</label>';
-            
+            sentenceText += '<input type="image" onclick="addTranslationTree()" src="lib/open-iconic-master/png/plus-2x.png">';
+            sentenceText += '<input type="image" onclick="copyTranslationTree()" src="lib/open-iconic-master/png/fork-2x.png">';
+            sentenceText += '<input type="image" onclick="deleteTranslationTree()" src="lib/open-iconic-master/png/x-2x.png">';
             for(var j in sentenceLangObj){
                 
                 var sentenceList = [];
                 getSentence(sentenceLangObj[j].tree[0], sentenceList);
                 var sentence = sentenceList.join(' ').trim();
-                
+                sentenceText += '<div class="translations">';
                 sentenceText += '<button onclick=showGraph('+'['+i+','+j+']'+')>'+(Number(j)+1)+') '+sentence+'</button>';
                 
                 if(!Array.isArray(sentenceLangObj[j].tree)){
                     sentenceLangObj[j].tree = [sentenceLangObj[j].tree];
                 }
+                sentenceText += '</div>';
             }
+
             sentenceText += '</div>';
         }
 
@@ -269,7 +289,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             //Inititally a label containing meanining and button for each translation
             
             if(currentSelectedIndex[1] >= 0){
-                currentSelectedElement = currentSelectedElement.children[currentSelectedIndex[1]+1]; 
+                var items = currentSelectedElement.querySelectorAll('.translations');
+                currentSelectedElement = items[currentSelectedIndex[1]].children[0]; 
             }
             
             currentSelectedElement.classList.add('selected');
@@ -297,18 +318,20 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     // When a new sentence is added, the current sentence is copied along with all languages
     // If no sentence is available then example sentence is copied
     function addMainTree(){
+        var tempData = JSON.parse(JSON.stringify(exampleMainContent));
+        for(var i in languagesInFile){
+            tempData[languagesInFile[i]] = [];
+        }
+        //tempData[chosenLanguage].push(JSON.parse(JSON.stringify(exampleLangContent)));
+        tempData = JSON.stringify(tempData);
+
         if(languageData.length <= 0){
             // add one item in 
-            var tempData = JSON.parse(JSON.stringify(exampleMainContent));
-            for(var i in languagesInFile){
-                tempData[languagesInFile[i]] = [];
-            }
-            tempData[chosenLanguage].push(JSON.parse(JSON.stringify(exampleLangContent)));
-            
-            tempData = JSON.stringify(tempData);
-            currentSelectedIndex = [0,0];
+            currentSelectedIndex = [0,-1];
         } else {
-            var tempData = JSON.stringify(languageData[currentSelectedIndex[0]]);    
+            currentSelectedIndex[0] = currentSelectedIndex[0]+1;
+            //Since translation is removed it is always -1
+            currentSelectedIndex[1] = -1;
         }
         
         languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
@@ -317,11 +340,31 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     }
     sentenceMeaningSection.querySelector('.add').onclick = addMainTree;
     
+     function copyMainTree(){
+        if(languageData.length <= 0){
+            addMainTree();
+            return;
+        } 
+          
+        var tempData = JSON.stringify(languageData[currentSelectedIndex[0]]);  
+        currentSelectedIndex[0] = currentSelectedIndex[0]+1;
+        currentSelectedIndex[1] = 0;
+        
+        languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
+
+        showGraph(currentSelectedIndex);
+    }
+    sentenceMeaningSection.querySelector('.copy').onclick = copyMainTree;
+    
     // The chosen sentence with all languages is deleted. 
     // Appropriate next element is chosen. if none found then set -1
     function deleteMainTree(){
         if(currentSelectedIndex[0] < 0){
             console.log('Choose a node first!');
+            return;
+        }
+        
+        if (!confirm('Will delete for all languages. Do you want to continue?')) {
             return;
         }
         
@@ -429,6 +472,18 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     
     // The current selected tree is copied and a new one is created next to it. If no sentence is 
     // present then use the example translated content
+    function getTreeForSentence(input){
+        input = input.trim();
+        words = input.split(' ');
+        
+        var outputTree = JSON.parse(JSON.stringify(exampleLangContent));
+        for(var i in words){
+            outputTree.tree[0].children.push({'label':words[i],'edge':'lex', 'properties':{'stem':words[i]}});
+        }
+        
+        return outputTree;
+    }
+    
     function addTranslationTree(){
         if(currentSelectedIndex[0] < 0){
             console.log('Choose a node first!');
@@ -438,11 +493,12 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         var sentenceObj = languageData[currentSelectedIndex[0]];
         var sentenceLangObj = sentenceObj[chosenLanguage];
         
+        var tempData = getTreeForSentence(sentenceObj.meaning);
+        tempData = JSON.stringify(tempData);
+        
         if(currentSelectedIndex[1] >= 0){
-            var treeObj = sentenceLangObj[currentSelectedIndex[1]];
-            var tempData = JSON.stringify(treeObj);
+            currentSelectedIndex[1] = currentSelectedIndex[1] + 1;
         } else {
-            var tempData = JSON.stringify(exampleLangContent);
             currentSelectedIndex[1] = 0;
         }
         console.log(tempData);
@@ -450,7 +506,29 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         showGraph(currentSelectedIndex);        
     }
-    jsonDrawSelectSection.querySelector('.add').onclick = addTranslationTree;
+
+    function copyTranslationTree(){
+        if(currentSelectedIndex[0] < 0){
+            console.log('Choose a node first!');
+            return;
+        }
+        
+        if(currentSelectedIndex[1] < 0){
+            addTranslationTree();
+            return;
+        }
+        
+        var sentenceObj = languageData[currentSelectedIndex[0]];
+        var sentenceLangObj = sentenceObj[chosenLanguage];
+        
+        var treeObj = sentenceLangObj[currentSelectedIndex[1]];
+        var tempData = JSON.stringify(treeObj);
+        currentSelectedIndex[1] = currentSelectedIndex[1] + 1;
+        console.log(tempData);
+        sentenceLangObj.splice(currentSelectedIndex[1], 0, JSON.parse(tempData));
+
+        showGraph(currentSelectedIndex);        
+    }
     
     // the selected translated sentence is deleted. And the current selected index need to be updated
     // If no sentence is selected then -1 is used
@@ -476,7 +554,6 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         showGraph(currentSelectedIndex);   
     }
-    jsonDrawSelectSection.querySelector('.delete').onclick = deleteTranslationTree;
     
 } else {
   alert("Your browser is too old to support HTML5 File API");
