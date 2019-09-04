@@ -2,6 +2,8 @@
 <head>
     <title>Read Json</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.css">
     <link rel="stylesheet" href="index.css">
 
@@ -19,69 +21,85 @@
         <div class="tab-content">
             <div id="converters" class="tab-pane fade" role="tabpanel">
                 <div class='row'>
-                    <div id = 'tojson' class='col-xs-12'>
+                    <div id='tojson' class='col-xs-12'>
+                        <h1>Brackets format to JSON conversion (Multi languages) </h1>
                         <label>Choose a parser text: </label>
-                        <input type='file' class='loadfile' value='load input'>
+                        <input type='file' class='loadfile' value='Load input'>
                         <label>Choose the language: </label>
                         <select class='loadlang'></select>
                         <label>Choose the languages for translation: </label>
                         <select class='translatelang' multiple=true></select>
-                        <input type='button' class='save' value='convert to JSON'>                        
+                        <input type='button' class='save' value='Convert to JSON'>                        
                         <label class="display">Action status will be displayed !!!</label>
                     </div>
                 </div>
                 <div class='row'>
-                    <div id = 'totext' class='col-xs-6'>
+                    <div id = 'totext' class='col-xs-12'>
+                        <h1>JSON conversion (Multi languages) to Brackets format</h1>
                         <label>Choose a JSON: </label>
-                        <input type='file' class='loadfile' value='load'>
+                        <input type='file' class='loadfile' value='Load'>
                         <label>Choose the language: </label>
                         <select class='loadlang'></select>
-                        <input type='button' class='save' value='convert to Text'>
+                        <input type='button' class='save' value='Convert to Text'>
                         <label class="display">Action status will be displayed !!!</label>
                     </div>
                 </div>            
             </div>
             <div id="main" class="tab-pane fade show active" role="tabpanel">
                 <div class='row' id='data-handle'>
-                    <div class='col-xs-6'>
-                        <input type='file' class='json-load' value='load json'>
-                        <input type='button' class='json-save' value='save' onclick='save'>
+                    <div class='col-6'>
+                        <input type='button' class='json-new' value='New JSON'>
+                        <input type='file' class='json-load' value='Load JSON'>
+                        <input type='button' class='json-save' value='Save' onclick='save'>
                     </div>
-                   <div class='col-xs-6'>
+                   <div class='col-6'>
                         <label>Change Language: </label>
                         <select class='lang-view'></select>
                         <label>Add Language: </label>
                         <textarea rows="1"></textarea>
-                        <input type="image" class = "lang-add" src="lib/open-iconic-master/png/plus-4x.png">
-                    </div>
-                </div>
-                <div class='row' id='sentence-meaning'>
-                    <div class='col-xs-6'>
-                    <input type="image" class = "add" src="lib/open-iconic-master/png/plus-8x.png">
-                    <input type="image" class = "copy" src="lib/open-iconic-master/png/fork-8x.png">
-                    <input type="image" class = "delete" src="lib/open-iconic-master/png/x-8x.png">              
-                    </div>
-                    <div class='col-xs-3'>
-                        <label class="sentence-no"></label>
-                        <label>Meaning: </label>
-                        <textarea rows="1"></textarea>
-                        <input type="image" class = "text-update" src="lib/open-iconic-master/png/check-4x.png">                        
-                    </div>
-                    <div class='col-xs-3'>
-                        <label>Comment: </label>
-                        <textarea rows="1"></textarea>
-                        <input type="image" class = "comment-update" src="lib/open-iconic-master/png/check-4x.png">                    
+                        <input type="image" class = "lang-add" src="lib/open-iconic-master/png/plus-4x.png" title="Add a Language">
                     </div>
                 </div>
                 <div class='row' id='translation-view'>
-                    <div class='col-xs-2'>
-                        <div class='translation-list'></div>
+                    <div class='col-3' id='translation-navigate'>
+                        <div class="row translation-main-buttons">
+                            <div class='col'>
+                                <input type="image" class = "add" src="lib/open-iconic-master/png/plus-8x.png" title="Add for all languages">
+                            </div>
+                            <div class='col'>
+                                <input type="image" class = "copy" src="lib/open-iconic-master/png/fork-8x.png" title="Copy for all languages">
+                            </div>
+                            <div class='col'>
+                                <input type="image" class = "delete" src="lib/open-iconic-master/png/delete-8x.png" title="Delete for all languages">               
+                            </div>
+                        </div>
+                        <div class="row">                        
+                            <div class='col translation-list'></div>
+                        </div>
                     </div>
-                    <div class='translation-draw' class='col-xs-10'>
-                        <label>Comment: </label>
-                        <textarea rows="1"></textarea>
-                        <input type="image" class = "comment-update" src="lib/open-iconic-master/png/check-4x.png">   
-                        <div id='graph'></div>                        
+                    <div class='col' id='translation-draw'>
+                        <div class='row'>
+                            <div class='col main'>
+                                <label class="sentence-no"></label>
+                                <label>Main Meaning: </label>
+                                <textarea rows="1"></textarea>
+                                <input type="image" class = "text-update" src="lib/open-iconic-master/png/check-2x.png" title="Update main meaning">
+                                <label>Main Comment: </label>
+                                <textarea rows="1"></textarea>
+                                <input type="image" class = "comment-update" src="lib/open-iconic-master/png/check-2x.png" title="Update main comment">                    
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col translation'>
+                                <label>Translation Comment: </label>
+                                <textarea rows="1" cols="50"></textarea>
+                                <input type="image" class = "comment-update" src="lib/open-iconic-master/png/check-2x.png" title="Update translation comment">   
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col' id='graph'>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

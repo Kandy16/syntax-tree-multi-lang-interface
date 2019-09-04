@@ -317,6 +317,7 @@ class Tree {
         let old_content = this.getNodeLabelWithProperties(nodeId);
         
         let isInputError = false;
+        let isParsingError = false;
         try{
             var label = inputText;
             var refId = undefined;
@@ -344,12 +345,20 @@ class Tree {
                             if(keyValue.length >= 2){
                                 properties[keyValue[0].trim()] = keyValue[1].trim();
                                 //ignore the rest
+                                
+                                if(keyValue.length > 2){
+                                    isParsingError = true;
+                                }
                             }
                             else if(info.startsWith('{') && info.endsWith('}')){
                                 // sometimes the coref will not have key
                                 properties['coref'] = info;
+                            } else if(info){
+                                isParsingError = true;
                             }
                         }
+                    } else if(props){
+                        isParsingError = true;
                     }
                 }
             }
@@ -365,7 +374,7 @@ class Tree {
         
         this.active_history.push([this.setNodeLabelWithProperties, this, [nodeId, old_content]]);
         this.clearRedoList();
-        return true;
+        return [isInputError, isParsingError];
     }
     
     undo() {

@@ -156,9 +156,16 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var exampleLangContent = {"gloss":[],"comment":"","tree":[{"label":"S","edge":"conj","children":[]}]};
     
     var jsonViewSelectSection = document.querySelector('#data-handle');
-    var sentenceMeaningSection = document.querySelector('#sentence-meaning');
-    var jsonListSelectSection = document.querySelector('#translation-view');
-    var jsonDrawSelectSection = document.querySelector('#translation-view .translation-draw');
+    var translationViewSection = document.querySelector('#translation-view');
+    
+    var translationNavigateSection = translationViewSection.querySelector('#translation-navigate');
+    var translationMainButtons = translationNavigateSection.querySelector('.translation-main-buttons');
+    var translationListSection = translationNavigateSection.querySelector('.translation-list');
+    
+    var translationDrawSection = translationViewSection.querySelector('#translation-draw');
+    var translationMainSentenceSection = translationDrawSection.querySelector('.main');
+    var translationTranslateSentenceSection = translationDrawSection.querySelector('.translation');
+    var translationGraphSection = translationViewSection.querySelector('#graph');
 
     // Goes through the content and extract languages. this is used to display in the listbox
     function extractLanguages(inputLanguageData){
@@ -192,11 +199,14 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                 }
                 return value;
             });
-            extractLanguages(languageData);
-            showGraph([0,0]);
+            handleJSONContent(languageData);
             console.log('Parser File to view is read succcessfully !!!');
         }
         reader.readAsText(files[0],'utf-8');
+    }
+    function handleJSONContent(languageData){
+        extractLanguages(languageData);
+        showGraph([0,0]);
     }
     function buildList(languageData, chosenLanguage){
         var sentenceText = '<ul>';
@@ -212,9 +222,9 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                 tempIndex = 0;
             }
             sentenceText += '<label onclick=showGraph('+'['+i+','+tempIndex+']'+')>'+sentence+'</label>';
-            sentenceText += '<input type="image" onclick="addTranslationTree()" src="lib/open-iconic-master/png/plus-2x.png">';
-            sentenceText += '<input type="image" onclick="copyTranslationTree()" src="lib/open-iconic-master/png/fork-2x.png">';
-            sentenceText += '<input type="image" onclick="deleteTranslationTree()" src="lib/open-iconic-master/png/x-2x.png">';
+            sentenceText += '<input type="image" onclick="addTranslationTree()" src="lib/open-iconic-master/png/plus-2x.png" title="Add translation">';
+            sentenceText += '<input type="image" onclick="copyTranslationTree()" src="lib/open-iconic-master/png/fork-2x.png" title="Copy translation">';
+            sentenceText += '<input type="image" onclick="deleteTranslationTree()" src="lib/open-iconic-master/png/delete-2x.png" title="Delete translation">';
             for(var j in sentenceLangObj){
                 
                 var sentenceList = [];
@@ -233,7 +243,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         }
 
         sentenceText += '</ul>';
-        displayElement = jsonListSelectSection.querySelector('.translation-list');
+        displayElement = translationListSection;
         displayElement.innerHTML = sentenceText;
         
         jsonViewSelectSection.querySelector('.lang-view').innerHTML =       
@@ -245,7 +255,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         buildList(languageData, chosenLanguage);
         currentSelectedIndex = indexes;
         
-        var labelMeaning = sentenceMeaningSection.querySelector('.sentence-no');
+        var labelMeaning = translationMainSentenceSection.querySelector('.sentence-no');
         labelMeaning.innerText = 'Sentence - '+(indexes[0]+1)+', Translation - '+ (indexes[1] + 1);
         
         
@@ -258,24 +268,24 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         var sentenceObj = languageData[indexes[0]];
         var sentenceLangObj = sentenceObj[chosenLanguage];
         
-        var textAreaList =  sentenceMeaningSection.querySelectorAll('textarea');
+        var textAreaList =  translationMainSentenceSection.querySelectorAll('textarea');
         textAreaList[0].value = ((sentenceObj.meaning)? sentenceObj.meaning:'Meaning missing. Enter!');
         textAreaList[1].value = ((sentenceObj.comment)? sentenceObj.comment:'Comment missing. Enter!');
         
         // Depending on the availability of graph, show or hide the respective parent element
         if(indexes && indexes.length==2 && indexes[1] > -1){
-            showElement(jsonListSelectSection);
-            showElement(document.querySelector('#graph'));      
+            showElement(translationListSection);
+            showElement(translationGraphSection);      
             
             treegui = new TreeGUI('graph');
             treegui.loadTreeFunc(sentenceLangObj[indexes[1]].tree);
 
-            jsonDrawSelectSection.querySelector('textarea').value = sentenceLangObj[indexes[1]].comment;
+            translationTranslateSentenceSection.querySelector('textarea').value = sentenceLangObj[indexes[1]].comment;
             
             highlightSelectedElement();
         } else {
             treegui = undefined;    
-            hideElement(document.querySelector('#graph'));      
+            hideElement(translationGraphSection);      
         }
     }
     function highlightSelectedElement(){
@@ -284,7 +294,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         }
         
         if(currentSelectedIndex[0] >= 0){
-            var items = jsonListSelectSection.querySelectorAll('.list-group-item');
+            var items = translationListSection.querySelectorAll('.list-group-item');
             currentSelectedElement = items[currentSelectedIndex[0]];
             //Inititally a label containing meanining and button for each translation
             
@@ -299,91 +309,32 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
     jsonViewSelectSection.querySelector('.json-load').addEventListener('change', handleParserFileToViewSelect, false);
     
-    function mainMeaningUpdate(){
-        var sentenceObj = languageData[currentSelectedIndex[0]];
-        sentenceObj.meaning = sentenceMeaningSection.querySelectorAll('textarea')[0].value;
-
-        showGraph(currentSelectedIndex);
+    function handleNewJSONContent(){
+        languageData = [{"meaning":"I sleep and you sleep","comment":"I sleep and you sleep","de":[{"gloss":[],"comment":"Ich schlafe und du schläfst","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"1"},"children":[{"label":"Ich","edge":"lex","properties":{"stem":"I","case":"1","person":"1","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schlafe","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"1","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"und","edge":"lex","properties":{"stem":"and"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"2"},"children":[{"label":"du","edge":"lex","refId":"10","properties":{"stem":"you","case":"1","person":"2","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schläfst","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"2","number":"sg","mode":"active"}}]}]}]}]}],"en":[{"gloss":[],"comment":"Ich schlafe","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"1"},"children":[{"label":"I","edge":"lex","properties":{"case":"1","person":"1","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleep","edge":"lex","properties":{"tense":"present","person":"1","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"and","edge":"lex","properties":{"coref":"{987}","wa":"kon"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"2"},"children":[{"label":"you","edge":"lex","properties":{"case":"1","person":"2","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleep","edge":"lex","properties":{"tense":"present","person":"2","number":"sg","mode":"active"}}]}]}]}]}]},{"meaning":"Hans is sleeping and Peter is sleeping","comment":"Hans is sleeping and Peter is sleeping","de":[{"gloss":[],"comment":"Hans schläft und Peter schläft","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"1"},"children":[{"label":"Hans","edge":"lex","properties":{"stem":"Hans","case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schläft","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"3","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"und","edge":"lex","properties":{"stem":"and"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"2"},"children":[{"label":"Peter","edge":"lex","refId":"10","properties":{"stem":"Peter","case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schläft","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"3","number":"sg","mode":"active"}}]}]}]}]}],"en":[{"gloss":[],"comment":"Ich schlafe","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"1"},"children":[{"label":"Mary","edge":"lex","properties":{"case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleeps","edge":"lex","properties":{"tense":"present","person":"3","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"and","edge":"lex","properties":{"coref":"{987}","wa":"kon"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"2"},"children":[{"label":"John","edge":"lex","properties":{"case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleeps","edge":"lex","properties":{"tense":"present","person":"3","number":"sg","mode":"active"}}]}]}]}]}]}];
+        
+        jsonViewSelectSection.querySelector('.json-load').value = '';
+        handleJSONContent(languageData);
     }
-    sentenceMeaningSection.querySelector('.text-update').onclick = mainMeaningUpdate;
+    jsonViewSelectSection.querySelector('.json-new').addEventListener('click', handleNewJSONContent, false);
     
-    function mainCommentUpdate(){
-        var sentenceObj = languageData[currentSelectedIndex[0]];
-        sentenceObj.comment = sentenceMeaningSection.querySelectorAll('textarea')[1].value;
+    function saveParser(e){
+        e.preventDefault();
 
-        showGraph(currentSelectedIndex);
-    }
-    sentenceMeaningSection.querySelector('.comment-update').onclick = mainCommentUpdate;
-    
-    // When a new sentence is added, the current sentence is copied along with all languages
-    // If no sentence is available then example sentence is copied
-    function addMainTree(){
-        var tempData = JSON.parse(JSON.stringify(exampleMainContent));
-        for(var i in languagesInFile){
-            tempData[languagesInFile[i]] = [];
-        }
-        //tempData[chosenLanguage].push(JSON.parse(JSON.stringify(exampleLangContent)));
-        tempData = JSON.stringify(tempData);
+        var blob = new Blob([JSON.stringify(languageData,
+                                          function(key, value){if(key == 'id'){return undefined} return value;})], {
+        "type": "application/json"
+        });
 
-        if(languageData.length <= 0){
-            // add one item in 
-            currentSelectedIndex = [0,-1];
-        } else {
-            currentSelectedIndex[0] = currentSelectedIndex[0]+1;
-            //Since translation is removed it is always -1
-            currentSelectedIndex[1] = -1;
-        }
-        
-        languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
-
-        showGraph(currentSelectedIndex);
+        var a = document.createElement("a");
+        a.download = name;
+        a.href = URL.createObjectURL(blob);
+        document.body.appendChild(a);
+        a.click();
+        //text.value = "";
+        //input.value = "";
+        document.body.removeChild(a);
     }
-    sentenceMeaningSection.querySelector('.add').onclick = addMainTree;
-    
-     function copyMainTree(){
-        if(languageData.length <= 0){
-            addMainTree();
-            return;
-        } 
-          
-        var tempData = JSON.stringify(languageData[currentSelectedIndex[0]]);  
-        currentSelectedIndex[0] = currentSelectedIndex[0]+1;
-        currentSelectedIndex[1] = 0;
-        
-        languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
-
-        showGraph(currentSelectedIndex);
-    }
-    sentenceMeaningSection.querySelector('.copy').onclick = copyMainTree;
-    
-    // The chosen sentence with all languages is deleted. 
-    // Appropriate next element is chosen. if none found then set -1
-    function deleteMainTree(){
-        if(currentSelectedIndex[0] < 0){
-            console.log('Choose a node first!');
-            return;
-        }
-        
-        if (!confirm('Will delete for all languages. Do you want to continue?')) {
-            return;
-        }
-        
-        languageData.splice(currentSelectedIndex[0], 1);
-        if(languageData.length && languageData.length > 0 ){
-            if(languageData.length <= currentSelectedIndex[0]){
-                currentSelectedIndex[0] = languageData.length - 1;
-            }
-        } else {
-            currentSelectedIndex = [-1,-1];
-        }
-        currentSelectedIndex[1] = -1;    
-        if(currentSelectedIndex[0] != -1 && languageData[currentSelectedIndex[0]][chosenLanguage].length > 0){
-            currentSelectedIndex[1] = 0;    
-        }
-        
-        showGraph(currentSelectedIndex);
-    }
-    sentenceMeaningSection.querySelector('.delete').onclick = deleteMainTree;
+    jsonViewSelectSection.querySelector('.json-save').onclick = saveParser;
     
     // When a new language is selected the first translated tree of a sentence is chosen
     function handleLanguageChangeForView(evt){
@@ -429,38 +380,104 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     }
     jsonViewSelectSection.querySelector('.lang-add').onclick = addNewLanguage;
     
+    // When a new sentence is added, the current sentence is copied along with all languages
+    // If no sentence is available then example sentence is copied
+    function addMainTree(){
+        var tempData = JSON.parse(JSON.stringify(exampleMainContent));
+        for(var i in languagesInFile){
+            tempData[languagesInFile[i]] = [];
+        }
+        //tempData[chosenLanguage].push(JSON.parse(JSON.stringify(exampleLangContent)));
+        tempData = JSON.stringify(tempData);
+
+        if(languageData.length <= 0){
+            // add one item in 
+            currentSelectedIndex = [0,-1];
+        } else {
+            currentSelectedIndex[0] = currentSelectedIndex[0]+1;
+            //Since translation is removed it is always -1
+            currentSelectedIndex[1] = -1;
+        }
+        
+        languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
+
+        showGraph(currentSelectedIndex);
+    }
+    translationMainButtons.querySelector('.add').onclick = addMainTree;
+    
+     function copyMainTree(){
+        if(languageData.length <= 0){
+            addMainTree();
+            return;
+        } 
+          
+        var tempData = JSON.stringify(languageData[currentSelectedIndex[0]]);  
+        currentSelectedIndex[0] = currentSelectedIndex[0]+1;
+        currentSelectedIndex[1] = 0;
+        
+        languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
+
+        showGraph(currentSelectedIndex);
+    }
+    translationMainButtons.querySelector('.copy').onclick = copyMainTree;
+    
+    // The chosen sentence with all languages is deleted. 
+    // Appropriate next element is chosen. if none found then set -1
+    function deleteMainTree(){
+        if(currentSelectedIndex[0] < 0){
+            console.log('Choose a node first!');
+            return;
+        }
+        
+        if (!confirm('Will delete for all languages. Do you want to continue?')) {
+            return;
+        }
+        
+        languageData.splice(currentSelectedIndex[0], 1);
+        if(languageData.length && languageData.length > 0 ){
+            if(languageData.length <= currentSelectedIndex[0]){
+                currentSelectedIndex[0] = languageData.length - 1;
+            }
+        } else {
+            currentSelectedIndex = [-1,-1];
+        }
+        currentSelectedIndex[1] = -1;    
+        if(currentSelectedIndex[0] != -1 && languageData[currentSelectedIndex[0]][chosenLanguage].length > 0){
+            currentSelectedIndex[1] = 0;    
+        }
+        
+        showGraph(currentSelectedIndex);
+    }
+    translationMainButtons.querySelector('.delete').onclick = deleteMainTree;
+    
+    function mainMeaningUpdate(){
+        var sentenceObj = languageData[currentSelectedIndex[0]];
+        sentenceObj.meaning = translationMainSentenceSection.querySelectorAll('textarea')[0].value;
+
+        showGraph(currentSelectedIndex);
+    }
+    translationMainSentenceSection.querySelector('.text-update').onclick = mainMeaningUpdate;
+    
+    function mainCommentUpdate(){
+        var sentenceObj = languageData[currentSelectedIndex[0]];
+        sentenceObj.comment = translationMainSentenceSection.querySelectorAll('textarea')[1].value;
+
+        showGraph(currentSelectedIndex);
+    }
+    translationMainSentenceSection.querySelector('.comment-update').onclick = mainCommentUpdate;
+    
     function treeCommentUpdate(){
         if(languageData && currentSelectedIndex ){
             var sentenceObj = languageData[currentSelectedIndex[0]];
             var sentenceLangObj = sentenceObj[chosenLanguage];
             var treeObj = sentenceLangObj[currentSelectedIndex[1]];
-            treeObj.comment = jsonDrawSelectSection.querySelector('textarea').value;
+            treeObj.comment = translationTranslateSentenceSection.querySelector('textarea').value;
             
             showGraph(currentSelectedIndex);
         }
     }
-    jsonDrawSelectSection.querySelector('.comment-update').onclick = treeCommentUpdate;
+    translationTranslateSentenceSection.querySelector('.comment-update').onclick = treeCommentUpdate;
 
-    function saveParser(e){
-        e.preventDefault();
-
-        var text = document.querySelector("textarea");
-        var blob = new Blob([JSON.stringify(languageData,
-                                          function(key, value){if(key == 'id'){return undefined} return value;})], {
-        "type": "application/json"
-        });
-
-        var a = document.createElement("a");
-        a.download = name;
-        a.href = URL.createObjectURL(blob);
-        document.body.appendChild(a);
-        a.click();
-        //text.value = "";
-        //input.value = "";
-        document.body.removeChild(a);
-    }
-    jsonViewSelectSection.querySelector('.json-save').onclick = saveParser;
-    
     function hideElement(element){
         element.style.display = "none";
     }

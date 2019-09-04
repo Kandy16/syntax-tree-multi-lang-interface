@@ -1,8 +1,10 @@
 body {
     margin: 0 auto;
+    padding: 0;
     color: #333;
     font-weight: 300;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow-y: hidden;
 }
 
 text {
@@ -11,89 +13,83 @@ text {
     font-size: 14px;
 }
 
-#graph textarea {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 3px;
+/* Navigation bar - space after title */
+.nav-tabs>li>a {
+   margin-right: 25px;
+   border: 1px solid #ccc;
+
+}
+
+/* Region to display list of sentence meaning 
+height is fixed and allowed the rest of content to be scrolled
+*/
+.translation-main-buttons, #sentence-meaning, #translation-comment{
     border: 1px solid #ccc;
+}
+
+#data-handle{
+    max-height:100px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .translation-list {
-    max-width: 450px;
-    height:calc(100vh - 10px);
-    overflow-y: scroll;
+    border: 1px solid #ccc;
+    margin: 0px;
+    padding: 0px;
+    max-height:calc(100vh - 100px);
+    overflow-y: auto;
+}
+.translation-list ul{
+    margin: 0px;
+    padding: 0px;
 }
 
+
+/*Space after the controls*/
 #sentence-meaning input{
-    padding-left: 25;
+    padding-left: 1px;
 }
-
 .list-group-item input{
-    padding-left: 7;
+    margin-left: 7px;
+}
+div .selected{
+    background-color: lightblue !important;
 }
 
+/* -------------------- Graph drawing region -------------------- */
+#graph {
+    max-width: calc(100vw - 500px);
+    max-height:calc(100vh - 200px);
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#graph textarea {
+    width:100%;
+    height: auto;
+    margin: 0;
+    border: 1px solid #ccc;
+}
 svg {
     border: 1px solid #ccc;
-    overflow: hidden;
     margin: 0 auto;
 }
-
 .node rect {
     stroke: #999;
     fill: #fff;
     stroke-width: 3px;
 }
-
-g.type-PRETERM > rect {
-    fill: #00ffd0;
-}
-
 rect.btn {
     stroke: #fff;
     fill: #fff;
     fill-opacity: 0;
     stroke-opacity: 0;
 }
-
 .edgePath path {
     stroke: #333;
     stroke-width: 3px;
 }
-
 .selected rect {
     fill: lightblue !important;
-}
-
-div .selected{
-    background-color: lightblue !important;
-}
-
-code {
-    width: 100%;
-    display: table;
-}
-
-code.log {
-    background-color: #7cfc00;
-}
-
-code.warn {
-    background-color: #ffff00;
-}
-
-code.error {
-    background-color: #ff0000;
-}
-
-.fixed-content {
-    border: 1px solid #ccc;
-    height: 150px;
-    resize: vertical;
-    overflow: auto;
-    background: #fff;
-}
-
-.nav-tabs>li>a {
-   margin-right: 25px;
 }
