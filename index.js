@@ -222,9 +222,11 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                 tempIndex = 0;
             }
             sentenceText += '<label onclick=showGraph('+'['+i+','+tempIndex+']'+')>'+sentence+'</label>';
+            sentenceText += '<div id="translationButtons">'
             sentenceText += '<input type="image" onclick="addTranslationTree()" src="lib/open-iconic-master/png/plus-2x.png" title="Add translation">';
             sentenceText += '<input type="image" onclick="copyTranslationTree()" src="lib/open-iconic-master/png/fork-2x.png" title="Copy translation">';
             sentenceText += '<input type="image" onclick="deleteTranslationTree()" src="lib/open-iconic-master/png/delete-2x.png" title="Delete translation">';
+            sentenceText += '</div>'
             for(var j in sentenceLangObj){
                 
                 var sentenceList = [];
@@ -281,22 +283,25 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             treegui.loadTreeFunc(sentenceLangObj[indexes[1]].tree);
 
             translationTranslateSentenceSection.querySelector('textarea').value = sentenceLangObj[indexes[1]].comment;
-            
-            highlightSelectedElement();
+                        
         } else {
             treegui = undefined;    
             hideElement(translationGraphSection);      
         }
+        
+        highlightSelectedElement();
     }
     function highlightSelectedElement(){
-        if(currentSelectedElement){
-            currentSelectedElement.classList.remove('selected');
-        }
         
         if(currentSelectedIndex[0] >= 0){
             var items = translationListSection.querySelectorAll('.list-group-item');
             currentSelectedElement = items[currentSelectedIndex[0]];
-            //Inititally a label containing meanining and button for each translation
+            // Inititally a label containing meanining and button for each translation
+            
+            // By default they are hidden. Whenever a button or label is clicked - the total is 
+            // redrawn. Show the translation buttons
+            var translatedButtons = currentSelectedElement.querySelector('#translationButtons');
+            translatedButtons.style.display = 'block';
             
             if(currentSelectedIndex[1] >= 0){
                 var items = currentSelectedElement.querySelectorAll('.translations');

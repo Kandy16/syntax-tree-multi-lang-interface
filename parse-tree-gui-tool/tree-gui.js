@@ -467,7 +467,7 @@ class TreeGUI{
             if(newLabel != null){
                 var results = this.treeGroupObj.setNodeLabelWithProperties(this.selectedNodeIndex, newLabel);
                 if(results[0] || results[1]){
-                    alert('Error occurred in parsing. The parser text is not proper. Please work on it!!!')
+                    alert('Error occurred in parsing. The old values are retained. Please make sure that syntax is correct !!!');
                 }
                 setTimeout(this.drawTree(this.treeGroupObj), 1000);    
                 

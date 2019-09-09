@@ -45,6 +45,10 @@ height is fixed and allowed the rest of content to be scrolled
     padding: 0px;
 }
 
+#translationButtons {
+    display: none;
+}
+
 
 /*Space after the controls*/
 #sentence-meaning input{
