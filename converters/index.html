@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Read Json</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="../lib/bootstrap-4.0.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="index.css">
+
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../lib/bootstrap-4.0.0-dist/js/bootstrap.js"></script>
+    <script src="../lib/d3.js" charset="utf-8"></script>
+    <script src="../lib/dagre-d3.js"></script>
+</head>
+<body>
+    <div class='container-fluid'>
+        <div class='row' id='header'>
+                <div class="col-11"><h1><b><center>Syntax Tree Visualizer</center></b></h1></div>
+                <div class='col-auto'>
+                    <a href="../index.html"><u>Main</u></a>
+                </div>
+        </div>
+        <div id="converters">
+                <div class='row'>
+                    <div id='tojson' class='col-xs-12'>
+                        <h1>Brackets format to JSON conversion (Multi languages) </h1>
+                        <label>Choose a parser text: </label>
+                        <input type='file' class='loadfile' value='Load input'>
+                        <label>Choose the language: </label>
+                        <select class='loadlang'></select>
+                        <label>Choose the languages for translation: </label>
+                        <select class='translatelang' multiple=true></select>
+                        <input type='button' class='save' value='Convert to JSON'>                        
+                        <label class="display">Action status will be displayed !!!</label>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div id = 'totext' class='col-xs-12'>
+                        <h1>JSON conversion (Multi languages) to Brackets format</h1>
+                        <label>Choose a JSON: </label>
+                        <input type='file' class='loadfile' value='Load'>
+                        <label>Choose the language: </label>
+                        <select class='loadlang'></select>
+                        <input type='button' class='save' value='Convert to Text'>
+                        <label class="display">Action status will be displayed !!!</label>
+                    </div>
+                </div>            
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../parse-tree-gui-tool/util.js"></script>
+<script type="text/javascript" src="../parse-tree-gui-tool/tree.js"></script>
+<script type="text/javascript" src="../parse-tree-gui-tool/tree-group.js"></script>
+<script type="text/javascript" src="../parse-tree-gui-tool/tree-gui.js"></script>
+
+<script type="text/javascript" src="parserfiletojson.js"></script>
+<script type="text/javascript" src="jsontoparserfile.js"></script>
+<script type='text/javascript' src='index.js'></script>
+</html>

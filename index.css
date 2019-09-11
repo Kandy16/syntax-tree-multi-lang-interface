@@ -4,7 +4,7 @@ body {
     color: #333;
     font-weight: 300;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
 }
 
 text {
@@ -17,7 +17,6 @@ text {
 .nav-tabs>li>a {
    margin-right: 25px;
    border: 1px solid #ccc;
-
 }
 
 /* Region to display list of sentence meaning 
@@ -31,6 +30,23 @@ height is fixed and allowed the rest of content to be scrolled
     max-height:100px;
     margin: 0px;
     padding: 0px;
+    background-color: cornflowerblue;
+}
+
+#file-input{
+    display: none;
+}
+.import-file{
+    display: inline-block;
+}
+
+.sentence-no{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#data-handle>div{
+    border-style: groove;
 }
 
 .translation-list {
@@ -61,10 +77,18 @@ div .selected{
     background-color: lightblue !important;
 }
 
+#translation-draw textarea {
+    width:75%;
+    height: auto;
+    margin: 0;
+    border: 1px solid #ccc;
+}
+
+
 /* -------------------- Graph drawing region -------------------- */
 #graph {
-    max-width: calc(100vw - 500px);
-    max-height:calc(100vh - 200px);
+     /*max-width: calc(100vw - 500px);
+   max-height:calc(100vh - 200px);*/
     overflow-x: auto;
     overflow-y: auto;
 }

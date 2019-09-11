@@ -2,142 +2,6 @@
 if (window.File && window.FileReader && window.FileList && window.Blob) {
     console.log('my browser has support for HTML5 APIs :-) !!!');
     
-    ///////////////////// Converter Section //////////////////////////
-    
-    var languages = ['de','ta','en']; // If more languages are required then add by hand
-    var jsonConverterSection = document.querySelector('#tojson');
-    var textConverterSection = document.querySelector('#totext');
-    var mergeSection = document.querySelector('#merge_json');
-
-    var input = {};
-    
-    // Input parser tree which needs to be converted to multi lang format
-    function handleParseFileSelect(evt){
-        var files = evt.target.files; // FileList object
-        console.log(files);
-        var reader = new FileReader();
-        reader.onload = function(event){
-            input.parser = {};
-            input.parser.content = event.target.result;
-            input.parser.language = languages[0];
-            
-            input.translation = {};
-            input.translation.languages = languages;
-            
-            jsonConverterSection.querySelector('.display').innerHTML = 'Parser File read succcessfully';
-        }
-        reader.readAsText(files[0],'utf-8');
-    }   
-    jsonConverterSection.querySelector('.loadfile').addEventListener('change', handleParseFileSelect, false);
-    
-    var inputJSON = {};
-    // Input JSON which needs to be converted to parser tree
-    function handleJSONSelect(evt){
-        var files = evt.target.files; // FileList object
-        console.log(files);
-        var reader = new FileReader();
-        reader.onload = function(event){
-            inputJSON.parser = {};
-            inputJSON.parser.content = event.target.result;
-            inputJSON.parser.language = languages[0];
-                
-            textConverterSection.querySelector('.display').innerHTML = 'JSON read succcessfully';
-        }
-        reader.readAsText(files[0],'utf-8');
-    }   
-    textConverterSection.querySelector('.loadfile').addEventListener('change', handleJSONSelect, false);
-    
-    // Prepare the list box with languages
-    function addOptionsForLanguage(inputLanguages, selectedLang){
-        if(!selectedLang){
-            selectedLang = inputLanguages[0];
-        }
-        
-        var languagesSelectionElement = '';
-        for(let i in inputLanguages){
-            var selectedText = '';
-            if(inputLanguages[i] == selectedLang){
-                selectedText = ' selected '
-            }
-            languagesSelectionElement += '<option'+selectedText+'>'+inputLanguages[i]+'</option>';
-        }
-        return languagesSelectionElement;
-    }
-    jsonConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
-    textConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
-
-    // This is optional. By default all languages are chosen. This translation file contains all the 
-    // translated text in tabular format /CSV or TSV
-    function handleTranslateFileSelect(evt){
-        var files = evt.target.files; // FileList object
-        console.log(files);
-        var reader = new FileReader();
-        reader.onload = function(event){
-            input.translation = {};
-            input.translation.content = event.target.result;
-            input.translation.languages = languages;
-            jsonConverterSection.querySelector('.display').innerHTML = 'Translation File read succcessfully';
-        }
-        reader.readAsText(files[0],'utf-8');
-    }   
-    jsonConverterSection.querySelector('.translatelang').innerHTML = addOptionsForLanguage(languages);
-
-    function saveToJSON(e){
-        e.preventDefault();
-        
-        input.parser.language = jsonConverterSection.querySelector('.loadlang').value;
-        input.translation.languages = [];
-        let selectedOptions = jsonConverterSection.querySelector('.translatelang').selectedOptions;
-        for(let i in selectedOptions){
-            if(!isNaN(i)){ //some properties are not numeric
-                input.translation.languages.push(selectedOptions[i].value);
-            }
-        }
-            
-        let tojsonObj = new parserfiletojson(input);
-        let saveData = tojsonObj.convert();
-        
-        var blob = new Blob([JSON.stringify(languageData,
-                                          function(key, value){if(key == 'id'){return undefined} return value;})], {
-        "type": "application/json"
-        });
-
-        var a = document.createElement("a");
-        a.download = name;
-        a.href = URL.createObjectURL(blob);
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        jsonConverterSection.querySelector('.display').innerHTML = 'Save to JSON read succcessfully';
-        
-    }
-    jsonConverterSection.querySelector('.save').onclick = saveToJSON;  
-    
-    function saveToText(e){
-        e.preventDefault();
-        
-        var jsonText = inputJSON.parser.content;
-        var selectedLang = textConverterSection.querySelector('.loadlang').value;
-        
-        var jsonObj = JSON.parse(jsonText);
-        
-        let toText = new jsontofileparser(jsonObj, selectedLang);
-        let saveData = toText.convert();
-        
-        var blob = new Blob([saveData], {
-        "type": "text/plain"
-        });
-
-        var a = document.createElement("a");
-        a.download = name;
-        a.href = URL.createObjectURL(blob);
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        textConverterSection.querySelector('.display').innerHTML = 'Saved to Text succcessfully';        
-    }
-    textConverterSection.querySelector('.save').onclick = saveToText;  
-    
     ///////////////////// Main Section //////////////////////////
     
     // Loads a JSON which is a compilation of parser trees of different languages cross 
@@ -163,9 +27,27 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var translationListSection = translationNavigateSection.querySelector('.translation-list');
     
     var translationDrawSection = translationViewSection.querySelector('#translation-draw');
-    var translationMainSentenceSection = translationDrawSection.querySelector('.main');
-    var translationTranslateSentenceSection = translationDrawSection.querySelector('.translation');
+    var translationMainMeaningSection = translationDrawSection.querySelector('.main_meaning');
+    var translationMainCommentSection = translationDrawSection.querySelector('.main_comment');
+    var translationTranslateSentenceSection = translationDrawSection.querySelector('.translation_comment');
     var translationGraphSection = translationViewSection.querySelector('#graph');
+    
+    // Prepare the list box with languages
+    function addOptionsForLanguage(inputLanguages, selectedLang){
+        if(!selectedLang){
+            selectedLang = inputLanguages[0];
+        }
+        
+        var languagesSelectionElement = '';
+        for(let i in inputLanguages){
+            var selectedText = '';
+            if(inputLanguages[i] == selectedLang){
+                selectedText = ' selected '
+            }
+            languagesSelectionElement += '<option'+selectedText+'>'+inputLanguages[i]+'</option>';
+        }
+        return languagesSelectionElement;
+    }
 
     // Goes through the content and extract languages. this is used to display in the listbox
     function extractLanguages(inputLanguageData){
@@ -200,6 +82,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
                 return value;
             });
             handleJSONContent(languageData);
+            // Setting this to empty will enable user to select the same file once again
+            jsonViewSelectSection.querySelector('.json-load').value = '';
             console.log('Parser File to view is read succcessfully !!!');
         }
         reader.readAsText(files[0],'utf-8');
@@ -257,7 +141,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         buildList(languageData, chosenLanguage);
         currentSelectedIndex = indexes;
         
-        var labelMeaning = translationMainSentenceSection.querySelector('.sentence-no');
+        var labelMeaning = jsonViewSelectSection.querySelector('.sentence-no');
         labelMeaning.innerText = 'Sentence - '+(indexes[0]+1)+', Translation - '+ (indexes[1] + 1);
         
         
@@ -270,9 +154,11 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         var sentenceObj = languageData[indexes[0]];
         var sentenceLangObj = sentenceObj[chosenLanguage];
         
-        var textAreaList =  translationMainSentenceSection.querySelectorAll('textarea');
-        textAreaList[0].value = ((sentenceObj.meaning)? sentenceObj.meaning:'Meaning missing. Enter!');
-        textAreaList[1].value = ((sentenceObj.comment)? sentenceObj.comment:'Comment missing. Enter!');
+        var mainMeaningText =  translationMainMeaningSection.querySelector('textarea');
+        mainMeaningText.value = ((sentenceObj.meaning)? sentenceObj.meaning:'Meaning missing. Enter!');
+        
+        var mainCommentText =  translationMainCommentSection.querySelector('textarea');
+        mainCommentText.value = ((sentenceObj.comment)? sentenceObj.comment:'Comment missing. Enter!');
         
         // Depending on the availability of graph, show or hide the respective parent element
         if(indexes && indexes.length==2 && indexes[1] > -1){
@@ -317,7 +203,6 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     function handleNewJSONContent(){
         languageData = [{"meaning":"I sleep and you sleep","comment":"I sleep and you sleep","de":[{"gloss":[],"comment":"Ich schlafe und du schläfst","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"1"},"children":[{"label":"Ich","edge":"lex","properties":{"stem":"I","case":"1","person":"1","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schlafe","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"1","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"und","edge":"lex","properties":{"stem":"and"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"2"},"children":[{"label":"du","edge":"lex","refId":"10","properties":{"stem":"you","case":"1","person":"2","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schläfst","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"2","number":"sg","mode":"active"}}]}]}]}]}],"en":[{"gloss":[],"comment":"Ich schlafe","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"1"},"children":[{"label":"I","edge":"lex","properties":{"case":"1","person":"1","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleep","edge":"lex","properties":{"tense":"present","person":"1","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"and","edge":"lex","properties":{"coref":"{987}","wa":"kon"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PersPron","edge":"head","properties":{"ref":"2"},"children":[{"label":"you","edge":"lex","properties":{"case":"1","person":"2","number":"sg"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleep","edge":"lex","properties":{"tense":"present","person":"2","number":"sg","mode":"active"}}]}]}]}]}]},{"meaning":"Hans is sleeping and Peter is sleeping","comment":"Hans is sleeping and Peter is sleeping","de":[{"gloss":[],"comment":"Hans schläft und Peter schläft","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"1"},"children":[{"label":"Hans","edge":"lex","properties":{"stem":"Hans","case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schläft","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"3","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"und","edge":"lex","properties":{"stem":"and"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"2"},"children":[{"label":"Peter","edge":"lex","refId":"10","properties":{"stem":"Peter","case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"schläft","edge":"lex","properties":{"stem":"sleep","tense":"present","person":"3","number":"sg","mode":"active"}}]}]}]}]}],"en":[{"gloss":[],"comment":"Ich schlafe","tree":[{"label":"S","edge":"expr","children":[{"label":"S","edge":"conj","properties":{"ref":"4"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"1"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"1"},"children":[{"label":"Mary","edge":"lex","properties":{"case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleeps","edge":"lex","properties":{"tense":"present","person":"3","number":"sg","mode":"active"}}]}]},{"label":"C","edge":"coord","children":[{"label":"and","edge":"lex","properties":{"coref":"{987}","wa":"kon"}}]},{"label":"S","edge":"conj","properties":{"ref":"5"},"children":[{"label":"NP","edge":"subj","properties":{"ref":"2"},"children":[{"label":"PropN","edge":"head","properties":{"ref":"2"},"children":[{"label":"John","edge":"lex","properties":{"case":"1","person":"3","number":"sg","gender":"masc"}}]}]},{"label":"V","edge":"head","properties":{"ref":"3"},"children":[{"label":"sleeps","edge":"lex","properties":{"tense":"present","person":"3","number":"sg","mode":"active"}}]}]}]}]}]}];
         
-        jsonViewSelectSection.querySelector('.json-load').value = '';
         handleJSONContent(languageData);
     }
     jsonViewSelectSection.querySelector('.json-new').addEventListener('click', handleNewJSONContent, false);
@@ -359,19 +244,21 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     }
     
     //When a new language is added, it is checked for duplication and empty value
-    function addNewLanguage(evt){
-        newLanguage = jsonViewSelectSection.querySelector('textarea').value.trim();
-        
+    function addNewLanguage(){
+        let newLanguage = prompt('Add the new language: ','');
         if(!newLanguage){
             console.log('Please enter something !!!');
-            return;
+            return;    
         }
-        console.log(newLanguage);
         
         //check whether new language is already available
-        if(!languagesInFile.includes(newLanguage)){
-            languagesInFile = languagesInFile.concat(newLanguage);
+        if(languagesInFile.includes(newLanguage)){
+           alert('Language entered already there !!!');
+            return;
         }
+        
+        console.log(newLanguage);
+        languagesInFile = languagesInFile.concat(newLanguage);
         jsonViewSelectSection.querySelector('.lang-view').innerHTML = addOptionsForLanguage(languagesInFile, chosenLanguage);
         
         //go through the data and set the language option
@@ -457,19 +344,19 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     
     function mainMeaningUpdate(){
         var sentenceObj = languageData[currentSelectedIndex[0]];
-        sentenceObj.meaning = translationMainSentenceSection.querySelectorAll('textarea')[0].value;
+        sentenceObj.meaning = translationMainMeaningSection.querySelector('textarea').value;
 
         showGraph(currentSelectedIndex);
     }
-    translationMainSentenceSection.querySelector('.text-update').onclick = mainMeaningUpdate;
+    translationMainMeaningSection.querySelector('.text-update').onclick = mainMeaningUpdate;
     
     function mainCommentUpdate(){
         var sentenceObj = languageData[currentSelectedIndex[0]];
-        sentenceObj.comment = translationMainSentenceSection.querySelectorAll('textarea')[1].value;
+        sentenceObj.comment = translationMainCommentSection.querySelector('textarea').value;
 
         showGraph(currentSelectedIndex);
     }
-    translationMainSentenceSection.querySelector('.comment-update').onclick = mainCommentUpdate;
+    translationMainCommentSection.querySelector('.comment-update').onclick = mainCommentUpdate;
     
     function treeCommentUpdate(){
         if(languageData && currentSelectedIndex ){
@@ -576,6 +463,9 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 
         showGraph(currentSelectedIndex);   
     }
+    
+    // Populate the UI with some content already
+    handleNewJSONContent();
     
 } else {
   alert("Your browser is too old to support HTML5 File API");

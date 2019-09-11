@@ -57,7 +57,7 @@ class parserfiletojson{
             languageFound = Object.keys(translationContent).includes(this.input.parser.language);
         }
         
-        languageData = parseWholeBracketsFile(this.input.parser.content,
+        var languageData = parseWholeBracketsFile(this.input.parser.content,
                                               this.input.parser.language);
 
         for(let i in languageData){
