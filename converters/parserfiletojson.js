@@ -108,12 +108,3 @@ class parserfiletojson{
     }
 }
 
-function getSentence(node, sentenceList){
-    if(node.children){
-        for(let i in node.children){
-            getSentence(node.children[i], sentenceList);
-        }
-    } else{
-        sentenceList.push(node.label);
-    }
-}

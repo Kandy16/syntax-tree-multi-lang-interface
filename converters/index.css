@@ -15,10 +15,25 @@ text {
     font-size: 14px;
 }
 
-
 #header{
     max-height:100px;
     margin: 0px;
     padding: 0px;
-    background-color: cornflowerblue;
+    background-color: powderblue;
+}
+
+#header>div{
+    border-style: groove;
+}
+
+.loadfile {
+    display: none;
+}
+
+.import-file {
+    display: inline-block;
+}
+
+.file-display {
+    color: grey;
 }

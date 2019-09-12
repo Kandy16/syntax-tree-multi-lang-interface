@@ -32,42 +32,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var translationTranslateSentenceSection = translationDrawSection.querySelector('.translation_comment');
     var translationGraphSection = translationViewSection.querySelector('#graph');
     
-    // Prepare the list box with languages
-    function addOptionsForLanguage(inputLanguages, selectedLang){
-        if(!selectedLang){
-            selectedLang = inputLanguages[0];
-        }
-        
-        var languagesSelectionElement = '';
-        for(let i in inputLanguages){
-            var selectedText = '';
-            if(inputLanguages[i] == selectedLang){
-                selectedText = ' selected '
-            }
-            languagesSelectionElement += '<option'+selectedText+'>'+inputLanguages[i]+'</option>';
-        }
-        return languagesSelectionElement;
-    }
-
-    // Goes through the content and extract languages. this is used to display in the listbox
-    function extractLanguages(inputLanguageData){
-        var languagesSet = new Set([]);
-        for (var i in inputLanguageData){
-            var sentenceObj = inputLanguageData[i];
-            
-            for(var j in sentenceObj){
-                if(j != 'meaning' && j != 'comment'){
-                    languagesSet.add(j);        
-                }    
-            }
-        }
-
-        languagesInFile = Array.from(languagesSet);
-        chosenLanguage = languagesInFile[0];
-        
-        return languagesInFile;
-    }
-    //read the content. extract the languages. Build a list of buttons each linking to a tree.
+     //read the content. extract the languages. Build a list of buttons each linking to a tree.
     // Display the graph by setting the index to 0,0 (1st sentence 1st translated text)
     function handleParserFileToViewSelect(evt) {
         var files = evt.target.files; // FileList object
@@ -89,7 +54,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         reader.readAsText(files[0],'utf-8');
     }
     function handleJSONContent(languageData){
-        extractLanguages(languageData);
+        languagesInFile = extractLanguages(languageData);
+        chosenLanguage = languagesInFile[0];
         showGraph([0,0]);
     }
     function buildList(languageData, chosenLanguage){
@@ -305,10 +271,14 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
           
         var tempData = JSON.stringify(languageData[currentSelectedIndex[0]]);  
         currentSelectedIndex[0] = currentSelectedIndex[0]+1;
-        currentSelectedIndex[1] = 0;
         
         languageData.splice(currentSelectedIndex[0], 0, JSON.parse(tempData));
-
+        currentSelectedIndex[1] = -1; 
+        if(currentSelectedIndex[0] != -1 && 
+           languageData[currentSelectedIndex[0]][chosenLanguage].length > 0){
+            currentSelectedIndex[1] = 0;    
+        }
+         
         showGraph(currentSelectedIndex);
     }
     translationMainButtons.querySelector('.copy').onclick = copyMainTree;

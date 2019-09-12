@@ -7,7 +7,6 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var languages = ['de','ta','en']; // If more languages are required then add by hand
     var jsonConverterSection = document.querySelector('#tojson');
     var textConverterSection = document.querySelector('#totext');
-    var mergeSection = document.querySelector('#merge_json');
 
     var input = {};
     
@@ -23,63 +22,15 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             
             input.translation = {};
             input.translation.languages = languages;
-            
+            jsonConverterSection.querySelector('.file-display').innerHTML = 
+            jsonConverterSection.querySelector('.loadfile').value;
+            jsonConverterSection.querySelector('.loadfile').value = '';
             jsonConverterSection.querySelector('.display').innerHTML = 'Parser File read succcessfully';
         }
         reader.readAsText(files[0],'utf-8');
     }   
     jsonConverterSection.querySelector('.loadfile').addEventListener('change', handleParseFileSelect, false);
-    
-    var inputJSON = {};
-    // Input JSON which needs to be converted to parser tree
-    function handleJSONSelect(evt){
-        var files = evt.target.files; // FileList object
-        console.log(files);
-        var reader = new FileReader();
-        reader.onload = function(event){
-            inputJSON.parser = {};
-            inputJSON.parser.content = event.target.result;
-            inputJSON.parser.language = languages[0];
-                
-            textConverterSection.querySelector('.display').innerHTML = 'JSON read succcessfully';
-        }
-        reader.readAsText(files[0],'utf-8');
-    }   
-    textConverterSection.querySelector('.loadfile').addEventListener('change', handleJSONSelect, false);
-    
-    // Prepare the list box with languages
-    function addOptionsForLanguage(inputLanguages, selectedLang){
-        if(!selectedLang){
-            selectedLang = inputLanguages[0];
-        }
-        
-        var languagesSelectionElement = '';
-        for(let i in inputLanguages){
-            var selectedText = '';
-            if(inputLanguages[i] == selectedLang){
-                selectedText = ' selected '
-            }
-            languagesSelectionElement += '<option'+selectedText+'>'+inputLanguages[i]+'</option>';
-        }
-        return languagesSelectionElement;
-    }
     jsonConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
-    textConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languages);
-
-    // This is optional. By default all languages are chosen. This translation file contains all the 
-    // translated text in tabular format /CSV or TSV
-    function handleTranslateFileSelect(evt){
-        var files = evt.target.files; // FileList object
-        console.log(files);
-        var reader = new FileReader();
-        reader.onload = function(event){
-            input.translation = {};
-            input.translation.content = event.target.result;
-            input.translation.languages = languages;
-            jsonConverterSection.querySelector('.display').innerHTML = 'Translation File read succcessfully';
-        }
-        reader.readAsText(files[0],'utf-8');
-    }   
     jsonConverterSection.querySelector('.translatelang').innerHTML = addOptionsForLanguage(languages);
 
     function saveToJSON(e){
@@ -113,6 +64,31 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         
     }
     jsonConverterSection.querySelector('.save').onclick = saveToJSON;  
+        
+    var inputJSON = {};
+    // Input JSON which needs to be converted to parser tree
+    function handleJSONSelect(evt){
+        var files = evt.target.files; // FileList object
+        console.log(files);
+        var reader = new FileReader();
+        reader.onload = function(event){
+            inputJSON.parser = {};
+            inputJSON.parser.content = event.target.result;
+            
+            var jsonObj = JSON.parse(inputJSON.parser.content);
+            var languagesInFile = extractLanguages(jsonObj);
+            textConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languagesInFile, languagesInFile[0]);
+
+            inputJSON.parser.language = languagesInFile[0];
+            
+            textConverterSection.querySelector('.file-display').innerHTML = 
+            textConverterSection.querySelector('.loadfile').value;
+            textConverterSection.querySelector('.loadfile').value = '';
+            textConverterSection.querySelector('.display').innerHTML = 'JSON read succcessfully';
+        }
+        reader.readAsText(files[0],'utf-8');
+    }   
+    textConverterSection.querySelector('.loadfile').addEventListener('change', handleJSONSelect, false);
     
     function saveToText(e){
         e.preventDefault();

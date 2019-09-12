@@ -19,16 +19,26 @@
                 <div class="col-3">
                     <label class="sentence-no"></label>
                 </div>
-                <div class="col-6"><h1><b><center>Multi-Language Syntax Tree Visualizer</center></b></h1></div>
+                <div class="col-6"><h2><b><center>Multi-Language Syntax Tree Editor</center></b></h2></div>
                 <div class='col-auto file-handling'>
-                    <input type='image' class='json-new' src="lib/open-iconic-master/png/file-4x.png">
-                    <div class="import-file">
-                        <label for="file-input">
-                            <img src="lib/open-iconic-master/png/envelope-open-4x.png"/>
+                    <div class="new-file">
+                        <label for="file-input1">
+                            <img src="lib/open-iconic-master/png/file-4x.png" title="Pre-load Content"/>
                         </label>
-                        <input type='file' id="file-input" class='json-load'>
+                        <input type='button' id="file-input1" class='json-new'>
                     </div>
-                    <input type='image' class='json-save' src="lib/open-iconic-master/png/envelope-closed-4x.png" onclick='save'>
+                    <div class="import-file">
+                        <label for="file-input2">
+                            <img src="lib/open-iconic-master/png/data-transfer-upload-4x.png" title="Load File"/>
+                        </label>
+                        <input type='file' id="file-input2" class='json-load'>
+                    </div>
+                    <div class="save-file">
+                        <label for="file-input3">
+                            <img src="lib/open-iconic-master/png/data-transfer-download-4x.png" title="Save File"/>
+                        </label>
+                        <input type='file' id="file-input3" class='json-save'>
+                    </div>
                 </div>
                <div class='col-auto lang-handling'>
                     <select class='lang-view'></select>
@@ -90,7 +100,6 @@
 <script type="text/javascript" src="parse-tree-gui-tool/tree.js"></script>
 <script type="text/javascript" src="parse-tree-gui-tool/tree-group.js"></script>
 <script type="text/javascript" src="parse-tree-gui-tool/tree-gui.js"></script>
-<script type="text/javascript" src="converters/parserfiletojson.js"></script>
-<script type="text/javascript" src="converters/jsontoparserfile.js"></script>
+<script type='text/javascript' src='util.js'></script>
 <script type='text/javascript' src='index.js'></script>
 </html>

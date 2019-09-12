@@ -14,7 +14,7 @@
 <body>
     <div class='container-fluid'>
         <div class='row' id='header'>
-                <div class="col-11"><h1><b><center>Syntax Tree Visualizer</center></b></h1></div>
+                <div class="col-11"><h2><b><center>Syntax Tree Converters</center></b></h2></div>
                 <div class='col-auto'>
                     <a href="../index.html"><u>Main</u></a>
                 </div>
@@ -24,7 +24,13 @@
                     <div id='tojson' class='col-xs-12'>
                         <h1>Brackets format to JSON conversion (Multi languages) </h1>
                         <label>Choose a parser text: </label>
-                        <input type='file' class='loadfile' value='Load input'>
+                        <div class="import-file">
+                            <label for="file-input1">
+                                <img src="../lib/open-iconic-master/png/data-transfer-upload-4x.png" title="Load File"/>
+                            </label>
+                            <input type='file' id="file-input1" class='loadfile'>
+                            <label class='file-display'></label>
+                        </div>
                         <label>Choose the language: </label>
                         <select class='loadlang'></select>
                         <label>Choose the languages for translation: </label>
@@ -37,7 +43,14 @@
                     <div id = 'totext' class='col-xs-12'>
                         <h1>JSON conversion (Multi languages) to Brackets format</h1>
                         <label>Choose a JSON: </label>
-                        <input type='file' class='loadfile' value='Load'>
+                        <div class="import-file">
+                            <label for="file-input2">
+                                <img src="../lib/open-iconic-master/png/data-transfer-upload-4x.png" title="Load File"/>
+                            </label>
+                            <input type='file' id="file-input2" class='loadfile'>
+                            <label class='file-display'></label>
+                        </div>
+                        
                         <label>Choose the language: </label>
                         <select class='loadlang'></select>
                         <input type='button' class='save' value='Convert to Text'>
@@ -53,6 +66,7 @@
 <script type="text/javascript" src="../parse-tree-gui-tool/tree-group.js"></script>
 <script type="text/javascript" src="../parse-tree-gui-tool/tree-gui.js"></script>
 
+<script type='text/javascript' src='../util.js'></script>
 <script type="text/javascript" src="parserfiletojson.js"></script>
 <script type="text/javascript" src="jsontoparserfile.js"></script>
 <script type='text/javascript' src='index.js'></script>

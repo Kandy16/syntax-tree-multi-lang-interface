@@ -30,13 +30,13 @@ height is fixed and allowed the rest of content to be scrolled
     max-height:100px;
     margin: 0px;
     padding: 0px;
-    background-color: cornflowerblue;
+    background-color: powderblue;
 }
 
-#file-input{
+#file-input1, #file-input2, #file-input3{
     display: none;
 }
-.import-file{
+.new-file, .import-file, .save-file {
     display: inline-block;
 }
 
