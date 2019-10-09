@@ -28,7 +28,6 @@ height is fixed and allowed the rest of content to be scrolled
 
 #data-handle{
     max-height:100px;
-    margin: 0px;
     padding: 0px;
     background-color: powderblue;
 }

@@ -7,6 +7,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var languages = ['de','ta','en']; // If more languages are required then add by hand
     var jsonConverterSection = document.querySelector('#tojson');
     var textConverterSection = document.querySelector('#totext');
+    var sentenceConverterSection = document.querySelector('#tosentence');
 
     var input = {};
     
@@ -114,6 +115,65 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
         textConverterSection.querySelector('.display').innerHTML = 'Saved to Text succcessfully';        
     }
     textConverterSection.querySelector('.save').onclick = saveToText;  
+    
+    var inputJSON2 = {};
+    // Input JSON which needs to be converted to parser tree
+    function handleJSONSelect2(evt){
+        var files = evt.target.files; // FileList object
+        console.log(files);
+        var reader = new FileReader();
+        reader.onload = function(event){
+            inputJSON2.parser = {};
+            inputJSON2.parser.content = event.target.result;
+            
+            var jsonObj = JSON.parse(inputJSON2.parser.content);
+            var languagesInFile = extractLanguages(jsonObj);
+            sentenceConverterSection.querySelector('.loadlang').innerHTML = addOptionsForLanguage(languagesInFile, languagesInFile[0]);
+
+            inputJSON2.parser.language = languagesInFile[0];
+            
+            sentenceConverterSection.querySelector('.file-display').innerHTML = 
+            sentenceConverterSection.querySelector('.loadfile').value;
+            sentenceConverterSection.querySelector('.loadfile').value = '';
+            sentenceConverterSection.querySelector('.display').innerHTML = 'JSON read succcessfully';
+        }
+        reader.readAsText(files[0],'utf-8');
+    }   
+    sentenceConverterSection.querySelector('.loadfile').addEventListener('change', handleJSONSelect2, false);
+    
+    function saveSentence(e){
+        e.preventDefault();
+        
+        var jsonText = inputJSON2.parser.content;
+        var selectedLang = sentenceConverterSection.querySelector('.loadlang').value;
+        
+        var jsonObj = JSON.parse(jsonText);
+        let saveData = '';
+        
+        for (var i in jsonObj){
+            var sentenceObj = jsonObj[i];
+            var sentenceLangObj = sentenceObj[selectedLang];
+            for(var j in sentenceLangObj){                
+                var sentenceList = [];
+                getSentence(sentenceLangObj[j].tree[0], sentenceList);
+                var sentence = sentenceList.join(' ').trim();
+                saveData += '"'+sentence+'",\n';
+            }
+        }
+        
+        var blob = new Blob([saveData], {
+        "type": "text/plain"
+        });
+
+        var a = document.createElement("a");
+        a.download = name;
+        a.href = URL.createObjectURL(blob);
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        sentenceConverterSection.querySelector('.display').innerHTML = 'Saved Sentence successfully';        
+    }
+    sentenceConverterSection.querySelector('.save').onclick = saveSentence; 
     
 } else {
   alert("Your browser is too old to support HTML5 File API");
