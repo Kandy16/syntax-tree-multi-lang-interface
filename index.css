@@ -32,16 +32,23 @@ height is fixed and allowed the rest of content to be scrolled
     background-color: powderblue;
 }
 
-#file-input1, #file-input2, #file-input3{
+#file-input1, #file-input2, #file-input3, #toggle-left1{
     display: none;
 }
-.new-file, .import-file, .save-file {
+.new-file, .import-file, .save-file{
     display: inline-block;
+}
+.toggle-left{
+    display: inline-block;    
+    border-style: groove;
+    padding: 5px
+    
 }
 
 .sentence-no{
     font-size: 25px;
-    font-weight: bold;
+    font-weight: bold;    
+    padding-right: 20px;
 }
 
 #data-handle>div{
@@ -82,7 +89,6 @@ div .selected{
     margin: 0;
     border: 1px solid #ccc;
 }
-
 
 /* -------------------- Graph drawing region -------------------- */
 #graph {

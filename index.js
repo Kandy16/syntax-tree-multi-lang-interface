@@ -163,6 +163,20 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
             currentSelectedElement.classList.add('selected');
         }
     }
+    
+    function showHideSelectColumn(){
+        if(translationNavigateSection){
+            var currentDisplayStatus = translationNavigateSection.style.display;
+            if(currentDisplayStatus == 'none'){
+                // this will make the bootstrap to take over
+                translationNavigateSection.style.display = '';            
+            }
+            else{
+                translationNavigateSection.style.display='none';        
+            }
+        }
+    }
+    jsonViewSelectSection.querySelector('#toggle-left1').addEventListener('click', showHideSelectColumn, false);
 
     jsonViewSelectSection.querySelector('.json-load').addEventListener('change', handleParserFileToViewSelect, false);
     

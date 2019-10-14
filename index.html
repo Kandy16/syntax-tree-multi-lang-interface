@@ -16,11 +16,17 @@
     <div class='container-fluid'>
         <div id="main">
             <div class='row' id='data-handle'>
-                <div class="col-3">
+                <div class="col-3 my-auto">
                     <label class="sentence-no"></label>
+                    <div class="toggle-left">
+                        <label for="toggle-left1">
+                            <img src="lib/open-iconic-master/png/collapse-left-4x.png" title="Collapse/Expand left"/>
+                        </label>
+                        <input type='button' id="toggle-left1">
+                    </div>
                 </div>
-                <div class="col-6"><h2><b><center>Multi-Language Syntax Tree Editor</center></b></h2></div>
-                <div class='col-auto file-handling'>
+                <div class="col-6 my-auto"><h2><b><center>Multi-Language Syntax Tree Editor</center></b></h2></div>
+                <div class='col-auto file-handling my-auto'>
                     <div class="new-file">
                         <label for="file-input1">
                             <img src="lib/open-iconic-master/png/file-4x.png" title="Pre-load Content"/>
@@ -40,11 +46,11 @@
                         <input type='file' id="file-input3" class='json-save'>
                     </div>
                 </div>
-               <div class='col-auto lang-handling'>
+               <div class='col-auto lang-handling my-auto'>
                     <select class='lang-view'></select>
                     <input type="image" class = "lang-add" src="lib/open-iconic-master/png/plus-4x.png" title="Add a Language">
                 </div>
-                <div class='col-auto'>
+                <div class='col-auto my-auto'>
                     <a href="./converters/index.html"><u>Converters</u></a>
                 </div>
             </div>
